@@ -6,6 +6,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import cz.lostice.svozodpadu.model.AppThemeMode
 
 private val DarkColorScheme = darkColorScheme(
@@ -34,18 +35,6 @@ private val OledBlackColorScheme = darkColorScheme(
     onSurface = Color(0xFFF8FAFC)
 )
 
-private val ForestDarkColorScheme = darkColorScheme(
-    primary = Color(0xFF4ADE80),
-    onPrimary = Color(0xFF052E16),
-    primaryContainer = Color(0xFF14532D),
-    onPrimaryContainer = Color(0xFFDCFCE7),
-    secondary = Color(0xFFA3E635),
-    onSecondary = Color(0xFF1A2E05),
-    background = Color(0xFF07170E),
-    surface = Color(0xFF0F291A),
-    surfaceVariant = Color(0xFF1A3F29)
-)
-
 private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF0284C7),
     onPrimary = Color.White,
@@ -58,9 +47,86 @@ private val LightColorScheme = lightColorScheme(
     surfaceVariant = Color(0xFFF1F5F9)
 )
 
+private fun buildCustomColorScheme(primaryRgb: Int, backgroundRgb: Int) = run {
+    val primaryColor = Color(0xFF000000 or (primaryRgb.toLong() and 0xFFFFFF))
+    val bgColor = Color(0xFF000000 or (backgroundRgb.toLong() and 0xFFFFFF))
+    val isDarkBg = bgColor.luminance() < 0.45f
+    val onPrimaryColor = if (primaryColor.luminance() > 0.5f) Color(0xFF0A0A0A) else Color.White
+
+    // Odvození barvy karet (surface) a kontejneru z pozadí a primární barvy
+    val surfaceColor = if (isDarkBg) {
+        Color(
+            red = (bgColor.red + 0.06f).coerceAtMost(1f),
+            green = (bgColor.green + 0.06f).coerceAtMost(1f),
+            blue = (bgColor.blue + 0.06f).coerceAtMost(1f)
+        )
+    } else {
+        Color(
+            red = (bgColor.red - 0.04f).coerceAtLeast(0f),
+            green = (bgColor.green - 0.04f).coerceAtLeast(0f),
+            blue = (bgColor.blue - 0.04f).coerceAtLeast(0f)
+        )
+    }
+
+    val surfaceVarColor = if (isDarkBg) {
+        Color(
+            red = (bgColor.red + 0.12f).coerceAtMost(1f),
+            green = (bgColor.green + 0.12f).coerceAtMost(1f),
+            blue = (bgColor.blue + 0.12f).coerceAtMost(1f)
+        )
+    } else {
+        Color(
+            red = (bgColor.red - 0.09f).coerceAtLeast(0f),
+            green = (bgColor.green - 0.09f).coerceAtLeast(0f),
+            blue = (bgColor.blue - 0.09f).coerceAtLeast(0f)
+        )
+    }
+
+    val primaryContainerColor = Color(
+        red = (bgColor.red * 0.7f + primaryColor.red * 0.3f).coerceIn(0f, 1f),
+        green = (bgColor.green * 0.7f + primaryColor.green * 0.3f).coerceIn(0f, 1f),
+        blue = (bgColor.blue * 0.7f + primaryColor.blue * 0.3f).coerceIn(0f, 1f)
+    )
+    val onPrimaryContainerColor = if (primaryContainerColor.luminance() > 0.5f) Color(0xFF0F172A) else Color(0xFFF8FAFC)
+
+    if (isDarkBg) {
+        darkColorScheme(
+            primary = primaryColor,
+            onPrimary = onPrimaryColor,
+            primaryContainer = primaryContainerColor,
+            onPrimaryContainer = onPrimaryContainerColor,
+            secondary = primaryColor,
+            onSecondary = onPrimaryColor,
+            background = bgColor,
+            onBackground = Color(0xFFF8FAFC),
+            surface = surfaceColor,
+            onSurface = Color(0xFFF8FAFC),
+            surfaceVariant = surfaceVarColor,
+            onSurfaceVariant = Color(0xFFCBD5E1)
+        )
+    } else {
+        lightColorScheme(
+            primary = primaryColor,
+            onPrimary = onPrimaryColor,
+            primaryContainer = primaryContainerColor,
+            onPrimaryContainer = onPrimaryContainerColor,
+            secondary = primaryColor,
+            onSecondary = onPrimaryColor,
+            background = bgColor,
+            onBackground = Color(0xFF0F172A),
+            surface = surfaceColor,
+            onSurface = Color(0xFF0F172A),
+            surfaceVariant = surfaceVarColor,
+            onSurfaceVariant = Color(0xFF475569)
+        )
+    }
+}
+
 @Composable
 fun SvozOdpaduTheme(
     themeMode: AppThemeMode = AppThemeMode.SYSTEM,
+    customPrimaryRgb: Int = 0x10B981,
+    customBackgroundRgb: Int = 0x07170E,
     content: @Composable () -> Unit
 ) {
     val systemDark = isSystemInDarkTheme()
@@ -69,7 +135,7 @@ fun SvozOdpaduTheme(
         AppThemeMode.LIGHT -> LightColorScheme
         AppThemeMode.DARK -> DarkColorScheme
         AppThemeMode.OLED -> OledBlackColorScheme
-        AppThemeMode.FOREST -> ForestDarkColorScheme
+        AppThemeMode.CUSTOM -> buildCustomColorScheme(customPrimaryRgb, customBackgroundRgb)
     }
 
     MaterialTheme(

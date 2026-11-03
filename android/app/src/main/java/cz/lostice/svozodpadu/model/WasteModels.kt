@@ -12,7 +12,7 @@ enum class AppThemeMode(val id: String, val label: String) {
     LIGHT("light", "Světlé"),
     DARK("dark", "Tmavé"),
     OLED("oled", "OLED Černé"),
-    FOREST("forest", "Eko Zelené");
+    CUSTOM("custom", "Vlastní");
 
     companion object {
         fun fromId(id: String): AppThemeMode = entries.firstOrNull { it.id == id } ?: SYSTEM
@@ -20,8 +20,8 @@ enum class AppThemeMode(val id: String, val label: String) {
 }
 
 enum class CalendarMarkerStyle(val id: String, val label: String) {
-    DOTS("dots", "Barevné tečky"),
-    ICONS("icons", "Ikony odpadu (popelnice, PET...)");
+    DOTS("dots", "Tečky"),
+    ICONS("icons", "Ikony");
 
     companion object {
         fun fromId(id: String): CalendarMarkerStyle = entries.firstOrNull { it.id == id } ?: DOTS
@@ -71,9 +71,11 @@ data class WasteEvent(
             null
         }
 
-    fun matchesPlace(placeFilter: String): Boolean {
-        if (placeFilter.isBlank()) return true
-        return places.any { it.equals(placeFilter, ignoreCase = true) }
+    fun matchesPlaces(placeFilters: Set<String>): Boolean {
+        if (placeFilters.isEmpty()) return true
+        return places.any { eventPlace ->
+            placeFilters.any { filterPlace -> eventPlace.equals(filterPlace, ignoreCase = true) }
+        }
     }
 }
 

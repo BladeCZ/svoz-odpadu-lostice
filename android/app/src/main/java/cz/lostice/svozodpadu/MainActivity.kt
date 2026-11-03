@@ -9,6 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
@@ -22,6 +23,8 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var repository: WasteRepository
     private var themeModeState by mutableStateOf(AppThemeMode.SYSTEM)
+    private var customPrimaryRgbState by mutableIntStateOf(0x10B981)
+    private var customBgRgbState by mutableIntStateOf(0x07170E)
 
     private val notificationPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
@@ -34,21 +37,34 @@ class MainActivity : ComponentActivity() {
 
         repository = WasteRepository(applicationContext)
         themeModeState = repository.getThemeMode()
+        customPrimaryRgbState = repository.getCustomPrimaryRgb()
+        customBgRgbState = repository.getCustomBackgroundRgb()
 
-        // Pokud uživatel otevřel aplikaci kliknutím na (případně trvalé) oznámení, oznámení zrušíme
         repository.cancelActiveNotifications()
 
         requestNotificationPermissionIfNeeded()
         WasteNotificationWorker.schedule(applicationContext)
 
         setContent {
-            SvozOdpaduTheme(themeMode = themeModeState) {
+            SvozOdpaduTheme(
+                themeMode = themeModeState,
+                customPrimaryRgb = customPrimaryRgbState,
+                customBackgroundRgb = customBgRgbState
+            ) {
                 MainScreen(
                     repository = repository,
                     currentThemeMode = themeModeState,
                     onThemeModeChange = { newMode ->
                         themeModeState = newMode
                         repository.setThemeMode(newMode)
+                    },
+                    customPrimaryRgb = customPrimaryRgbState,
+                    customBackgroundRgb = customBgRgbState,
+                    onCustomColorsChange = { newPrimary, newBg ->
+                        customPrimaryRgbState = newPrimary
+                        customBgRgbState = newBg
+                        repository.setCustomPrimaryRgb(newPrimary)
+                        repository.setCustomBackgroundRgb(newBg)
                     }
                 )
             }

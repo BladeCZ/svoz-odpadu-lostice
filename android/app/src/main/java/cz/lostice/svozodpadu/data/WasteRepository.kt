@@ -37,15 +37,15 @@ class WasteRepository(private val context: Context) {
         const val CHANNEL_ID = "svoz_odpadu_lostice_channel"
         const val ACTIVE_NOTIFICATION_ID = 202611
 
-        // Filtry kalendáře
-        const val KEY_FILTER_WASTE_ID = "filter_waste_id"
-        const val KEY_FILTER_PLACE = "filter_place"
+        // Filtry kalendáře (vícenásobný výběr)
+        const val KEY_FILTER_WASTE_IDS = "filter_waste_ids"
+        const val KEY_FILTER_PLACES = "filter_places_set"
         const val KEY_HIDE_YARD_IN_LIST = "hide_yard_in_list"
 
         // Upozornění – filtry a chování
         const val KEY_NOTIFY_ENABLED = "notify_enabled"
         const val KEY_NOTIFY_WASTE_IDS = "notify_waste_ids"
-        const val KEY_NOTIFY_PLACE = "notify_place"
+        const val KEY_NOTIFY_PLACES = "notify_places_set"
         const val KEY_NOTIFY_PERSISTENT = "notify_persistent"
 
         // 1) Dva dny předem
@@ -67,6 +67,8 @@ class WasteRepository(private val context: Context) {
 
         // Customizace vzhledu (Nastavení)
         const val KEY_THEME_MODE = "ui_theme_mode"
+        const val KEY_CUSTOM_PRIMARY_RGB = "ui_custom_primary_rgb"
+        const val KEY_CUSTOM_BG_RGB = "ui_custom_bg_rgb"
         const val KEY_CALENDAR_MARKER_STYLE = "ui_calendar_marker_style"
         const val KEY_COMPACT_CARDS = "ui_compact_cards"
         const val KEY_HIGHLIGHT_CALENDAR_CELLS = "ui_highlight_calendar_cells"
@@ -92,19 +94,19 @@ class WasteRepository(private val context: Context) {
         }
     }
 
-    // --- Filtry zobrazení v kalendáři ---
-    fun getSelectedWasteTypeFilter(): String =
-        prefs.getString(KEY_FILTER_WASTE_ID, "0") ?: "0"
+    // --- Filtry zobrazení v kalendáři (prázdná množina = vše vybráno) ---
+    fun getSelectedWasteTypeFilters(): Set<String> =
+        prefs.getStringSet(KEY_FILTER_WASTE_IDS, emptySet()) ?: emptySet()
 
-    fun setSelectedWasteTypeFilter(wasteTypeId: String) {
-        prefs.edit().putString(KEY_FILTER_WASTE_ID, wasteTypeId).apply()
+    fun setSelectedWasteTypeFilters(wasteTypeIds: Set<String>) {
+        prefs.edit().putStringSet(KEY_FILTER_WASTE_IDS, wasteTypeIds).apply()
     }
 
-    fun getSelectedPlaceFilter(): String =
-        prefs.getString(KEY_FILTER_PLACE, "") ?: ""
+    fun getSelectedPlaceFilters(): Set<String> =
+        prefs.getStringSet(KEY_FILTER_PLACES, emptySet()) ?: emptySet()
 
-    fun setSelectedPlaceFilter(place: String) {
-        prefs.edit().putString(KEY_FILTER_PLACE, place).apply()
+    fun setSelectedPlaceFilters(places: Set<String>) {
+        prefs.edit().putStringSet(KEY_FILTER_PLACES, places).apply()
     }
 
     fun isHideYardInList(): Boolean =
@@ -129,11 +131,11 @@ class WasteRepository(private val context: Context) {
         prefs.edit().putStringSet(KEY_NOTIFY_WASTE_IDS, ids).apply()
     }
 
-    fun getNotifyPlace(): String =
-        prefs.getString(KEY_NOTIFY_PLACE, "") ?: ""
+    fun getNotifyPlaces(): Set<String> =
+        prefs.getStringSet(KEY_NOTIFY_PLACES, emptySet()) ?: emptySet()
 
-    fun setNotifyPlace(place: String) {
-        prefs.edit().putString(KEY_NOTIFY_PLACE, place).apply()
+    fun setNotifyPlaces(places: Set<String>) {
+        prefs.edit().putStringSet(KEY_NOTIFY_PLACES, places).apply()
     }
 
     fun isPersistentNotification(): Boolean =
@@ -217,6 +219,20 @@ class WasteRepository(private val context: Context) {
         prefs.edit().putString(KEY_THEME_MODE, mode.id).apply()
     }
 
+    fun getCustomPrimaryRgb(): Int =
+        prefs.getInt(KEY_CUSTOM_PRIMARY_RGB, 0x10B981)
+
+    fun setCustomPrimaryRgb(rgb: Int) {
+        prefs.edit().putInt(KEY_CUSTOM_PRIMARY_RGB, rgb and 0xFFFFFF).apply()
+    }
+
+    fun getCustomBackgroundRgb(): Int =
+        prefs.getInt(KEY_CUSTOM_BG_RGB, 0x07170E)
+
+    fun setCustomBackgroundRgb(rgb: Int) {
+        prefs.edit().putInt(KEY_CUSTOM_BG_RGB, rgb and 0xFFFFFF).apply()
+    }
+
     fun getCalendarMarkerStyle(): CalendarMarkerStyle =
         CalendarMarkerStyle.fromId(
             prefs.getString(KEY_CALENDAR_MARKER_STYLE, CalendarMarkerStyle.DOTS.id) ?: CalendarMarkerStyle.DOTS.id
@@ -292,7 +308,7 @@ class WasteRepository(private val context: Context) {
 
         val data = loadCalendarData(forceNetwork = true)
         val allowedTypeIds = getNotifyWasteTypeIds()
-        val placeFilter = getNotifyPlace()
+        val placeFilters = getNotifyPlaces()
         val now = LocalDateTime.now()
         val today = now.toLocalDate()
         val currentTime = now.toLocalTime()
@@ -301,7 +317,6 @@ class WasteRepository(private val context: Context) {
         val summaryLines = mutableListOf<String>()
         var mainTitle = "Upozornění na svoz odpadu"
 
-        // Pomocná funkce pro sestavení 1 souhrnného řádku za daný den
         fun checkOffset(
             enabled: Boolean,
             daysAhead: Long,
@@ -318,11 +333,10 @@ class WasteRepository(private val context: Context) {
             val matchingEvents = data.events.filter { ev ->
                 ev.localDate == targetDate &&
                     allowedTypeIds.contains(ev.wasteTypeId) &&
-                    ev.matchesPlace(placeFilter)
+                    ev.matchesPlaces(placeFilters)
             }
             if (matchingEvents.isEmpty()) return
 
-            // Unikátní klíč pro tento den a typ předstihu (odesílá se jen jednou)
             val notifKey = "${keyPrefix}_${targetDate}"
             if (sentSet.contains(notifKey)) return
 
@@ -333,7 +347,6 @@ class WasteRepository(private val context: Context) {
             sentSet.add(notifKey)
         }
 
-        // 1) V den svozu
         checkOffset(
             enabled = isNotifyDayOf(),
             daysAhead = 0,
@@ -343,7 +356,6 @@ class WasteRepository(private val context: Context) {
             keyPrefix = "dayof"
         )
 
-        // 2) Den předem
         checkOffset(
             enabled = isNotifyDayBefore(),
             daysAhead = 1,
@@ -353,7 +365,6 @@ class WasteRepository(private val context: Context) {
             keyPrefix = "daybefore"
         )
 
-        // 3) Dva dny předem
         checkOffset(
             enabled = isNotifyTwoDaysBefore(),
             daysAhead = 2,
@@ -363,7 +374,6 @@ class WasteRepository(private val context: Context) {
             keyPrefix = "twodaysbefore"
         )
 
-        // Pokud je co oznámit, pošleme VŽDY JEN JEDNO souhrnné oznámení!
         if (summaryLines.isNotEmpty()) {
             val finalTitle = if (summaryLines.size > 1) {
                 "Připomenutí nadcházejících svozů odpadu"
@@ -385,21 +395,21 @@ class WasteRepository(private val context: Context) {
     // --- Testovací upozornění (vždy 1 souhrnné oznámení pro nejbližší den svozu) ---
     fun sendTestNotification(events: List<WasteEvent>) {
         val allowedTypeIds = getNotifyWasteTypeIds()
-        val placeFilter = getNotifyPlace()
+        val placeFilters = getNotifyPlaces()
         val today = LocalDate.now()
 
         val nextEvent = events.firstOrNull { ev ->
             val d = ev.localDate
             d != null && !d.isBefore(today) &&
                 allowedTypeIds.contains(ev.wasteTypeId) &&
-                ev.matchesPlace(placeFilter)
+                ev.matchesPlaces(placeFilters)
         }
 
         if (nextEvent != null && nextEvent.localDate != null) {
             val sameDayEvents = events.filter { ev ->
                 ev.date == nextEvent.date &&
                     allowedTypeIds.contains(ev.wasteTypeId) &&
-                    ev.matchesPlace(placeFilter)
+                    ev.matchesPlaces(placeFilters)
             }
             val uniqueNames = sameDayEvents.map { it.shortName }.distinct().joinToString(", ")
             val uniquePlaces = sameDayEvents.flatMap { it.places }.distinct().joinToString(", ")

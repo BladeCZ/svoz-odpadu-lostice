@@ -1,10 +1,32 @@
 package cz.lostice.svozodpadu.model
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
-import java.util.Locale
+
+enum class AppThemeMode(val id: String, val label: String) {
+    SYSTEM("system", "Podle systému"),
+    LIGHT("light", "Světlé"),
+    DARK("dark", "Tmavé"),
+    OLED("oled", "OLED Černé"),
+    FOREST("forest", "Eko Zelené");
+
+    companion object {
+        fun fromId(id: String): AppThemeMode = entries.firstOrNull { it.id == id } ?: SYSTEM
+    }
+}
+
+enum class CalendarMarkerStyle(val id: String, val label: String) {
+    DOTS("dots", "Barevné tečky"),
+    ICONS("icons", "Ikony odpadu (popelnice, PET...)");
+
+    companion object {
+        fun fromId(id: String): CalendarMarkerStyle = entries.firstOrNull { it.id == id } ?: DOTS
+    }
+}
 
 data class WasteCalendarData(
     val municipality: String = "Město Loštice",
@@ -55,6 +77,29 @@ data class WasteEvent(
     }
 }
 
+fun getWasteIcon(wasteTypeId: String, wasteName: String = ""): ImageVector {
+    val lower = wasteName.lowercase()
+    return when {
+        wasteTypeId == "7" || wasteTypeId == "12" || lower.contains("směsného") || lower.contains("komunální") ->
+            Icons.Default.Delete // Popelnice pro komunální odpad
+        wasteTypeId == "2" || lower.contains("plast") ->
+            Icons.Default.LocalDrink // PET lahev pro plasty
+        wasteTypeId == "10" || wasteTypeId == "11" || wasteTypeId == "8" || lower.contains("bioodpad") ->
+            Icons.Default.Eco // Lístek pro bioodpad
+        wasteTypeId == "3" || lower.contains("olej") ->
+            Icons.Default.WaterDrop // Kapka / lahev pro oleje
+        wasteTypeId == "13" || lower.contains("gastro") ->
+            Icons.Default.Restaurant // Příbor pro gastro odpad
+        wasteTypeId == "9" || lower.contains("listí") ->
+            Icons.Default.Park // Listí / park
+        wasteTypeId == "14" || lower.contains("větví") || lower.contains("ořez") ->
+            Icons.Default.Forest // Stromy / větve
+        wasteTypeId == "4" || wasteTypeId == "6" || lower.contains("sběrného dvora") ->
+            Icons.Default.Warehouse // Sběrný dvůr
+        else -> Icons.Default.Recycling
+    }
+}
+
 fun parseHexColor(hex: String): Color {
     val cleaned = hex.trim().removePrefix("#")
     return try {
@@ -64,7 +109,6 @@ fun parseHexColor(hex: String): Color {
             else -> "00AEEF"
         }
         val rgb = fullHex.toLong(16)
-        // Ztmavení čistě žluté (#ffff00) pro lepší čitelnost na světlém i tmavém pozadí
         if (fullHex.equals("ffff00", ignoreCase = true)) {
             Color(0xFFEAB308)
         } else {
@@ -119,6 +163,11 @@ fun formatCzechDateFull(date: LocalDate): String {
     val dayName = czechDayNames[date.dayOfWeek.value] ?: ""
     val monthGen = czechMonthGenitive[date.monthValue] ?: "${date.monthValue}."
     return "$dayName ${date.dayOfMonth}. $monthGen ${date.year}"
+}
+
+fun formatCzechDateShort(date: LocalDate): String {
+    val dayName = czechDayNames[date.dayOfWeek.value] ?: ""
+    return "$dayName ${date.dayOfMonth}. ${date.monthValue}."
 }
 
 fun formatCzechMonthYear(year: Int, month: Int): String {

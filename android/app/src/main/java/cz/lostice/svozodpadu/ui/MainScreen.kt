@@ -1,13 +1,16 @@
 package cz.lostice.svozodpadu.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -16,22 +19,36 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cz.lostice.svozodpadu.data.WasteRepository
 import cz.lostice.svozodpadu.model.*
+import cz.lostice.svozodpadu.worker.WasteNotificationWorker
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.YearMonth
+import kotlin.math.abs
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(repository: WasteRepository) {
+fun MainScreen(
+    repository: WasteRepository,
+    currentThemeMode: AppThemeMode,
+    onThemeModeChange: (AppThemeMode) -> Unit
+) {
+    val context = LocalContext.current
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -39,21 +56,38 @@ fun MainScreen(repository: WasteRepository) {
     var isLoading by remember { mutableStateOf(true) }
     var activeTab by remember { mutableIntStateOf(0) }
     var showFilterPanel by remember { mutableStateOf(false) }
+    var showCustomizationSheet by remember { mutableStateOf(false) }
 
     // Stav filtrů kalendáře a seznamu
     var selectedWasteId by remember { mutableStateOf(repository.getSelectedWasteTypeFilter()) }
     var selectedPlace by remember { mutableStateOf(repository.getSelectedPlaceFilter()) }
     var hideYardInList by remember { mutableStateOf(repository.isHideYardInList()) }
 
+    // Stav customizace rozhraní
+    var markerStyle by remember { mutableStateOf(repository.getCalendarMarkerStyle()) }
+    var compactCards by remember { mutableStateOf(repository.isCompactCards()) }
+    var highlightCalendarCells by remember { mutableStateOf(repository.isHighlightCalendarCells()) }
+
     // Stav nastavení upozornění
     var notifyEnabled by remember { mutableStateOf(repository.isNotificationsEnabled()) }
     var notifyWasteIds by remember { mutableStateOf(repository.getNotifyWasteTypeIds()) }
     var notifyPlace by remember { mutableStateOf(repository.getNotifyPlace()) }
+    var notifyPersistent by remember { mutableStateOf(repository.isPersistentNotification()) }
+
+    // 1) Dva dny předem
+    var notifyTwoDaysBefore by remember { mutableStateOf(repository.isNotifyTwoDaysBefore()) }
+    var notifyTwoDaysBeforeHour by remember { mutableIntStateOf(repository.getNotifyTwoDaysBeforeHour()) }
+    var notifyTwoDaysBeforeMinute by remember { mutableIntStateOf(repository.getNotifyTwoDaysBeforeMinute()) }
+
+    // 2) Den předem
     var notifyDayBefore by remember { mutableStateOf(repository.isNotifyDayBefore()) }
     var notifyDayBeforeHour by remember { mutableIntStateOf(repository.getNotifyDayBeforeHour()) }
+    var notifyDayBeforeMinute by remember { mutableIntStateOf(repository.getNotifyDayBeforeMinute()) }
+
+    // 3) V den svozu
     var notifyDayOf by remember { mutableStateOf(repository.isNotifyDayOf()) }
     var notifyDayOfHour by remember { mutableIntStateOf(repository.getNotifyDayOfHour()) }
-    var dbUrl by remember { mutableStateOf(repository.getDatabaseUrl()) }
+    var notifyDayOfMinute by remember { mutableIntStateOf(repository.getNotifyDayOfMinute()) }
 
     fun refreshData(forceOnline: Boolean) {
         scope.launch {
@@ -66,14 +100,16 @@ fun MainScreen(repository: WasteRepository) {
         }
     }
 
+    fun rescheduleNotifications() {
+        WasteNotificationWorker.schedule(context)
+    }
+
     LaunchedEffect(Unit) {
-        // Nejprve okamžitě načíst z lokální cache / assets, poté zaktualizovat ze sítě
         calendarData = repository.loadCalendarData(forceNetwork = false)
         isLoading = false
         refreshData(forceOnline = true)
     }
 
-    // Filtrované události podle zvoleného filtru "Typ události", "Místo" a přepínače Sběrného dvora
     val filteredEvents = remember(calendarData.events, selectedWasteId, selectedPlace, hideYardInList) {
         calendarData.events.filter { ev ->
             val matchWaste = selectedWasteId == "0" || ev.wasteTypeId == selectedWasteId
@@ -84,6 +120,34 @@ fun MainScreen(repository: WasteRepository) {
     }
 
     val activeFiltersCount = (if (selectedWasteId != "0") 1 else 0) + (if (selectedPlace.isNotBlank()) 1 else 0)
+
+    if (showCustomizationSheet) {
+        CustomizationDialog(
+            currentThemeMode = currentThemeMode,
+            onThemeModeChange = onThemeModeChange,
+            markerStyle = markerStyle,
+            onMarkerStyleChange = {
+                markerStyle = it
+                repository.setCalendarMarkerStyle(it)
+            },
+            highlightCalendarCells = highlightCalendarCells,
+            onHighlightCalendarCellsChange = {
+                highlightCalendarCells = it
+                repository.setHighlightCalendarCells(it)
+            },
+            compactCards = compactCards,
+            onCompactCardsChange = {
+                compactCards = it
+                repository.setCompactCards(it)
+            },
+            notifyPersistent = notifyPersistent,
+            onNotifyPersistentChange = {
+                notifyPersistent = it
+                repository.setPersistentNotification(it)
+            },
+            onDismiss = { showCustomizationSheet = false }
+        )
+    }
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
@@ -127,7 +191,27 @@ fun MainScreen(repository: WasteRepository) {
                                 modifier = Modifier.size(18.dp)
                             )
                         }
+                    } else if (activeTab == 2) {
+                        // V kartě Upozornění je na místě Filtru tlačítko Nastavení (customizace rozhraní)
+                        FilledTonalButton(
+                            onClick = { showCustomizationSheet = true },
+                            contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
+                            modifier = Modifier.padding(end = 4.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Tune,
+                                contentDescription = "Nastavení vzhledu",
+                                modifier = Modifier.size(18.dp)
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(
+                                text = "Nastavení",
+                                fontSize = 13.sp,
+                                fontWeight = FontWeight.SemiBold
+                            )
+                        }
                     }
+
                     IconButton(onClick = {
                         refreshData(forceOnline = true)
                         scope.launch {
@@ -177,7 +261,6 @@ fun MainScreen(repository: WasteRepository) {
                 .fillMaxSize()
                 .padding(innerPadding)
         ) {
-            // Rozbalovací panel "Filtr" (přesně podle webu MÚ Loštice)
             AnimatedVisibility(visible = showFilterPanel && (activeTab == 0 || activeTab == 1)) {
                 FilterDropdownPanel(
                     wasteTypes = calendarData.wasteTypes,
@@ -216,6 +299,8 @@ fun MainScreen(repository: WasteRepository) {
                         events = filteredEvents,
                         wasteTypes = calendarData.wasteTypes,
                         selectedWasteId = selectedWasteId,
+                        markerStyle = markerStyle,
+                        compactCards = compactCards,
                         onSelectWasteId = {
                             selectedWasteId = it
                             repository.setSelectedWasteTypeFilter(it)
@@ -223,59 +308,96 @@ fun MainScreen(repository: WasteRepository) {
                     )
                     1 -> CalendarTab(
                         events = filteredEvents,
-                        wasteTypes = calendarData.wasteTypes
+                        wasteTypes = calendarData.wasteTypes,
+                        markerStyle = markerStyle,
+                        highlightCalendarCells = highlightCalendarCells,
+                        compactCards = compactCards
                     )
                     2 -> NotificationsTab(
                         wasteTypes = calendarData.wasteTypes,
                         places = calendarData.places,
+                        markerStyle = markerStyle,
                         notifyEnabled = notifyEnabled,
                         onNotifyEnabledChange = {
                             notifyEnabled = it
                             repository.setNotificationsEnabled(it)
+                            rescheduleNotifications()
+                        },
+                        notifyPersistent = notifyPersistent,
+                        onNotifyPersistentChange = {
+                            notifyPersistent = it
+                            repository.setPersistentNotification(it)
                         },
                         notifyWasteIds = notifyWasteIds,
                         onNotifyWasteIdsChange = {
                             notifyWasteIds = it
                             repository.setNotifyWasteTypeIds(it)
+                            rescheduleNotifications()
                         },
                         notifyPlace = notifyPlace,
                         onNotifyPlaceChange = {
                             notifyPlace = it
                             repository.setNotifyPlace(it)
+                            rescheduleNotifications()
+                        },
+                        notifyTwoDaysBefore = notifyTwoDaysBefore,
+                        onNotifyTwoDaysBeforeChange = {
+                            notifyTwoDaysBefore = it
+                            repository.setNotifyTwoDaysBefore(it)
+                            rescheduleNotifications()
+                        },
+                        notifyTwoDaysBeforeHour = notifyTwoDaysBeforeHour,
+                        onNotifyTwoDaysBeforeHourChange = {
+                            notifyTwoDaysBeforeHour = it
+                            repository.setNotifyTwoDaysBeforeHour(it)
+                            rescheduleNotifications()
+                        },
+                        notifyTwoDaysBeforeMinute = notifyTwoDaysBeforeMinute,
+                        onNotifyTwoDaysBeforeMinuteChange = {
+                            notifyTwoDaysBeforeMinute = it
+                            repository.setNotifyTwoDaysBeforeMinute(it)
+                            rescheduleNotifications()
                         },
                         notifyDayBefore = notifyDayBefore,
                         onNotifyDayBeforeChange = {
                             notifyDayBefore = it
                             repository.setNotifyDayBefore(it)
+                            rescheduleNotifications()
                         },
                         notifyDayBeforeHour = notifyDayBeforeHour,
                         onNotifyDayBeforeHourChange = {
                             notifyDayBeforeHour = it
                             repository.setNotifyDayBeforeHour(it)
+                            rescheduleNotifications()
+                        },
+                        notifyDayBeforeMinute = notifyDayBeforeMinute,
+                        onNotifyDayBeforeMinuteChange = {
+                            notifyDayBeforeMinute = it
+                            repository.setNotifyDayBeforeMinute(it)
+                            rescheduleNotifications()
                         },
                         notifyDayOf = notifyDayOf,
                         onNotifyDayOfChange = {
                             notifyDayOf = it
                             repository.setNotifyDayOf(it)
+                            rescheduleNotifications()
                         },
                         notifyDayOfHour = notifyDayOfHour,
                         onNotifyDayOfHourChange = {
                             notifyDayOfHour = it
                             repository.setNotifyDayOfHour(it)
+                            rescheduleNotifications()
                         },
-                        dbUrl = dbUrl,
-                        onDbUrlSave = { newUrl ->
-                            dbUrl = newUrl
-                            repository.setDatabaseUrl(newUrl)
-                            refreshData(forceOnline = true)
-                            scope.launch {
-                                snackbarHostState.showSnackbar("URL uložena a kalendář aktualizován")
-                            }
+                        notifyDayOfMinute = notifyDayOfMinute,
+                        onNotifyDayOfMinuteChange = {
+                            notifyDayOfMinute = it
+                            repository.setNotifyDayOfMinute(it)
+                            rescheduleNotifications()
                         },
                         onTestNotification = {
                             repository.sendTestNotification(calendarData.events)
                             scope.launch {
-                                snackbarHostState.showSnackbar("Testovací upozornění bylo odesláno")
+                                snackbarHostState.showSnackbar("Souhrnné testovací upozornění bylo odesláno")
                             }
                         }
                     )
@@ -283,6 +405,143 @@ fun MainScreen(repository: WasteRepository) {
             }
         }
     }
+}
+
+@Composable
+fun CustomizationDialog(
+    currentThemeMode: AppThemeMode,
+    onThemeModeChange: (AppThemeMode) -> Unit,
+    markerStyle: CalendarMarkerStyle,
+    onMarkerStyleChange: (CalendarMarkerStyle) -> Unit,
+    highlightCalendarCells: Boolean,
+    onHighlightCalendarCellsChange: (Boolean) -> Unit,
+    compactCards: Boolean,
+    onCompactCardsChange: (Boolean) -> Unit,
+    notifyPersistent: Boolean,
+    onNotifyPersistentChange: (Boolean) -> Unit,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(Icons.Default.Palette, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
+                Spacer(modifier = Modifier.width(10.dp))
+                Text("Nastavení a vzhled aplikace", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            }
+        },
+        text = {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(14.dp)
+            ) {
+                // 1) Barevné téma
+                Text("Barevný motiv rozhraní", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    AppThemeMode.entries.forEach { mode ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(10.dp))
+                                .clickable { onThemeModeChange(mode) }
+                                .padding(vertical = 4.dp, horizontal = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            RadioButton(
+                                selected = currentThemeMode == mode,
+                                onClick = { onThemeModeChange(mode) }
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text(mode.label, fontSize = 14.sp, fontWeight = FontWeight.Medium)
+                        }
+                    }
+                }
+
+                HorizontalDivider()
+
+                // 2) Zobrazení v kalendáři: Tečky vs. Ikony
+                Text("Značky v kalendáři a seznamu", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    CalendarMarkerStyle.entries.forEach { style ->
+                        FilterChip(
+                            selected = markerStyle == style,
+                            onClick = { onMarkerStyleChange(style) },
+                            leadingIcon = {
+                                Icon(
+                                    imageVector = if (style == CalendarMarkerStyle.ICONS) Icons.Default.Delete else Icons.Default.Circle,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            },
+                            label = { Text(if (style == CalendarMarkerStyle.ICONS) "Ikony odpadu" else "Tečky") },
+                            modifier = Modifier.weight(1f)
+                        )
+                    }
+                }
+
+                // 3) Podbarvení políček v kalendáři
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Barevně podbarvit dny v kalendáři", fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
+                        Text(
+                            "Jemně zvýrazní celé políčko dne barvou svozu",
+                            fontSize = 11.sp,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    Switch(checked = highlightCalendarCells, onCheckedChange = onHighlightCalendarCellsChange)
+                }
+
+                // 4) Kompaktní režim karet
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Kompaktní přehled svozů", fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
+                        Text(
+                            "Stručné karty bez dlouhých popisů pro zobrazení více termínů najednou",
+                            fontSize = 11.sp,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    Switch(checked = compactCards, onCheckedChange = onCompactCardsChange)
+                }
+
+                HorizontalDivider()
+
+                // 5) Trvalé upozornění
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text("Trvalé upozornění (ochrana smazání)", fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
+                        Text(
+                            "Nelze omylem smazat přejetím ani tlačítkem „Vymazat vše“ – zmizí až po klepnutí na oznámení a otevření aplikace",
+                            fontSize = 11.sp,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    Switch(checked = notifyPersistent, onCheckedChange = onNotifyPersistentChange)
+                }
+            }
+        },
+        confirmButton = {
+            Button(onClick = onDismiss) {
+                Text("Hotovo")
+            }
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -334,7 +593,6 @@ fun FilterDropdownPanel(
                 }
             }
 
-            // Rozevírací seznam: Typ události
             ExposedDropdownMenuBox(
                 expanded = wasteExpanded,
                 onExpandedChange = { wasteExpanded = !wasteExpanded }
@@ -364,11 +622,11 @@ fun FilterDropdownPanel(
                     wasteTypes.forEach { wt ->
                         DropdownMenuItem(
                             leadingIcon = {
-                                Box(
-                                    modifier = Modifier
-                                        .size(14.dp)
-                                        .clip(CircleShape)
-                                        .background(parseHexColor(wt.color))
+                                Icon(
+                                    imageVector = getWasteIcon(wt.id, wt.name),
+                                    contentDescription = null,
+                                    tint = parseHexColor(wt.color),
+                                    modifier = Modifier.size(18.dp)
                                 )
                             },
                             text = { Text(wt.name) },
@@ -381,7 +639,6 @@ fun FilterDropdownPanel(
                 }
             }
 
-            // Rozevírací seznam: Místo
             ExposedDropdownMenuBox(
                 expanded = placeExpanded,
                 onExpandedChange = { placeExpanded = !placeExpanded }
@@ -421,7 +678,6 @@ fun FilterDropdownPanel(
                 }
             }
 
-            // Přepínač pro skrytí provozní doby sběrného dvora
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
@@ -442,10 +698,38 @@ fun FilterDropdownPanel(
 }
 
 @Composable
+fun WasteMarkerBadge(
+    wasteTypeId: String,
+    wasteName: String,
+    colorHex: String,
+    markerStyle: CalendarMarkerStyle,
+    sizeDp: Int = 16
+) {
+    val c = parseHexColor(colorHex)
+    if (markerStyle == CalendarMarkerStyle.ICONS) {
+        Icon(
+            imageVector = getWasteIcon(wasteTypeId, wasteName),
+            contentDescription = wasteName,
+            tint = c,
+            modifier = Modifier.size(sizeDp.dp)
+        )
+    } else {
+        Box(
+            modifier = Modifier
+                .size((sizeDp - 2).coerceAtLeast(6).dp)
+                .clip(CircleShape)
+                .background(c)
+        )
+    }
+}
+
+@Composable
 fun UpcomingTab(
     events: List<WasteEvent>,
     wasteTypes: List<WasteType>,
     selectedWasteId: String,
+    markerStyle: CalendarMarkerStyle,
+    compactCards: Boolean,
     onSelectWasteId: (String) -> Unit
 ) {
     val today = LocalDate.now()
@@ -470,7 +754,6 @@ fun UpcomingTab(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        // Rychlé štítky pro nejčastější druhy odpadu
         item {
             LazyRow(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -489,11 +772,12 @@ fun UpcomingTab(
                         selected = selected,
                         onClick = { onSelectWasteId(if (selected) "0" else wt.id) },
                         leadingIcon = {
-                            Box(
-                                modifier = Modifier
-                                    .size(10.dp)
-                                    .clip(CircleShape)
-                                    .background(parseHexColor(wt.color))
+                            WasteMarkerBadge(
+                                wasteTypeId = wt.id,
+                                wasteName = wt.name,
+                                colorHex = wt.color,
+                                markerStyle = markerStyle,
+                                sizeDp = 15
                             )
                         },
                         label = { Text(wt.shortName) }
@@ -502,7 +786,6 @@ fun UpcomingTab(
             }
         }
 
-        // Karta "Nejbližší svoz"
         if (nextCollectionEntry != null) {
             val nextDate = LocalDate.parse(nextCollectionEntry.key)
             val nextItems = nextCollectionEntry.value
@@ -559,11 +842,12 @@ fun UpcomingTab(
                                 verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier.padding(top = 4.dp)
                             ) {
-                                Box(
-                                    modifier = Modifier
-                                        .size(14.dp)
-                                        .clip(CircleShape)
-                                        .background(parseHexColor(ev.color))
+                                WasteMarkerBadge(
+                                    wasteTypeId = ev.wasteTypeId,
+                                    wasteName = ev.wasteTypeName,
+                                    colorHex = ev.color,
+                                    markerStyle = markerStyle,
+                                    sizeDp = 18
                                 )
                                 Spacer(modifier = Modifier.width(10.dp))
                                 Column {
@@ -632,14 +916,26 @@ fun UpcomingTab(
 
             items(groupedByDate.entries.toList(), key = { it.key }) { (dateStr, dayEvents) ->
                 val dateObj = LocalDate.parse(dateStr)
-                DayEventsCard(date = dateObj, events = dayEvents, today = today)
+                DayEventsCard(
+                    date = dateObj,
+                    events = dayEvents,
+                    today = today,
+                    markerStyle = markerStyle,
+                    compact = compactCards
+                )
             }
         }
     }
 }
 
 @Composable
-fun DayEventsCard(date: LocalDate, events: List<WasteEvent>, today: LocalDate) {
+fun DayEventsCard(
+    date: LocalDate,
+    events: List<WasteEvent>,
+    today: LocalDate,
+    markerStyle: CalendarMarkerStyle,
+    compact: Boolean = false
+) {
     val rel = relativeDayLabel(date, today)
     val isTodayOrTomorrow = date == today || date == today.plusDays(1)
 
@@ -664,8 +960,8 @@ fun DayEventsCard(date: LocalDate, events: List<WasteEvent>, today: LocalDate) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(14.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+                .padding(if (compact) 10.dp else 14.dp),
+            verticalArrangement = Arrangement.spacedBy(if (compact) 6.dp else 10.dp)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -675,7 +971,7 @@ fun DayEventsCard(date: LocalDate, events: List<WasteEvent>, today: LocalDate) {
                 Text(
                     text = formatCzechDateFull(date),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 15.sp
+                    fontSize = if (compact) 14.sp else 15.sp
                 )
                 Surface(
                     color = if (isTodayOrTomorrow) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
@@ -696,23 +992,25 @@ fun DayEventsCard(date: LocalDate, events: List<WasteEvent>, today: LocalDate) {
             events.forEach { ev ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.Top
+                    verticalAlignment = if (compact) Alignment.CenterVertically else Alignment.Top
                 ) {
-                    Box(
-                        modifier = Modifier
-                            .padding(top = 4.dp)
-                            .size(14.dp)
-                            .clip(RoundedCornerShape(4.dp))
-                            .background(parseHexColor(ev.color))
-                    )
+                    Box(modifier = Modifier.padding(top = if (compact) 0.dp else 3.dp)) {
+                        WasteMarkerBadge(
+                            wasteTypeId = ev.wasteTypeId,
+                            wasteName = ev.wasteTypeName,
+                            colorHex = ev.color,
+                            markerStyle = markerStyle,
+                            sizeDp = 18
+                        )
+                    }
                     Spacer(modifier = Modifier.width(10.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = ev.wasteTypeName,
+                            text = if (compact) ev.shortName else ev.wasteTypeName,
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 14.sp
                         )
-                        if (ev.description.isNotBlank() && ev.description != ev.wasteTypeName) {
+                        if (!compact && ev.description.isNotBlank() && ev.description != ev.wasteTypeName) {
                             Text(
                                 text = ev.description,
                                 fontSize = 12.sp,
@@ -722,12 +1020,12 @@ fun DayEventsCard(date: LocalDate, events: List<WasteEvent>, today: LocalDate) {
                         }
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier.padding(top = 4.dp)
+                            modifier = Modifier.padding(top = if (compact) 1.dp else 4.dp)
                         ) {
                             Icon(
                                 imageVector = Icons.Default.LocationOn,
                                 contentDescription = null,
-                                modifier = Modifier.size(14.dp),
+                                modifier = Modifier.size(13.dp),
                                 tint = MaterialTheme.colorScheme.primary
                             )
                             Spacer(modifier = Modifier.width(4.dp))
@@ -748,7 +1046,10 @@ fun DayEventsCard(date: LocalDate, events: List<WasteEvent>, today: LocalDate) {
 @Composable
 fun CalendarTab(
     events: List<WasteEvent>,
-    wasteTypes: List<WasteType>
+    wasteTypes: List<WasteType>,
+    markerStyle: CalendarMarkerStyle,
+    highlightCalendarCells: Boolean,
+    compactCards: Boolean
 ) {
     val today = LocalDate.now()
     var currentMonth by remember { mutableStateOf(YearMonth.from(today)) }
@@ -767,7 +1068,6 @@ fun CalendarTab(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
-        // Hlavička měsíce
         item {
             Card(
                 shape = RoundedCornerShape(16.dp),
@@ -809,7 +1109,6 @@ fun CalendarTab(
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    // Dny v týdnu Po - Ne
                     val weekDays = listOf("Po", "Út", "St", "Čt", "Pá", "So", "Ne")
                     Row(modifier = Modifier.fillMaxWidth()) {
                         weekDays.forEach { d ->
@@ -826,7 +1125,6 @@ fun CalendarTab(
 
                     Spacer(modifier = Modifier.height(6.dp))
 
-                    // Mřížka kalendáře
                     val firstDayOfMonth = currentMonth.atDay(1)
                     val leadingEmptyDays = firstDayOfMonth.dayOfWeek.value - 1
                     val daysInMonth = currentMonth.lengthOfMonth()
@@ -846,16 +1144,19 @@ fun CalendarTab(
                                     val cellEvents = eventsByDate[cellDate.toString()] ?: emptyList()
                                     val isSelected = cellDate == selectedDate
                                     val isToday = cellDate == today
+                                    val primaryEventColor = cellEvents.firstOrNull()?.let { parseHexColor(it.color) }
 
                                     Box(
                                         modifier = Modifier
                                             .weight(1f)
-                                            .aspectRatio(0.92f)
+                                            .aspectRatio(0.88f)
                                             .padding(2.dp)
                                             .clip(RoundedCornerShape(10.dp))
                                             .background(
                                                 when {
                                                     isSelected -> MaterialTheme.colorScheme.primaryContainer
+                                                    highlightCalendarCells && primaryEventColor != null ->
+                                                        primaryEventColor.copy(alpha = 0.22f)
                                                     isToday -> MaterialTheme.colorScheme.surfaceVariant
                                                     else -> Color.Transparent
                                                 }
@@ -863,7 +1164,7 @@ fun CalendarTab(
                                             .then(
                                                 if (isToday && !isSelected) {
                                                     Modifier.border(
-                                                        1.dp,
+                                                        1.5.dp,
                                                         MaterialTheme.colorScheme.primary,
                                                         RoundedCornerShape(10.dp)
                                                     )
@@ -874,7 +1175,7 @@ fun CalendarTab(
                                     ) {
                                         Column(
                                             horizontalAlignment = Alignment.CenterHorizontally,
-                                            modifier = Modifier.padding(top = 4.dp)
+                                            modifier = Modifier.padding(top = 3.dp)
                                         ) {
                                             Text(
                                                 text = "$dayNum",
@@ -882,19 +1183,28 @@ fun CalendarTab(
                                                 fontWeight = if (isSelected || isToday || cellEvents.isNotEmpty()) FontWeight.Bold else FontWeight.Normal,
                                                 color = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
                                             )
-                                            Spacer(modifier = Modifier.height(3.dp))
-                                            // Barevné tečky událostí v daný den
+                                            Spacer(modifier = Modifier.height(2.dp))
                                             Row(
                                                 horizontalArrangement = Arrangement.spacedBy(2.dp),
                                                 verticalAlignment = Alignment.CenterVertically
                                             ) {
-                                                cellEvents.take(4).forEach { ev ->
-                                                    Box(
-                                                        modifier = Modifier
-                                                            .size(6.dp)
-                                                            .clip(CircleShape)
-                                                            .background(parseHexColor(ev.color))
-                                                    )
+                                                val maxMarkers = if (markerStyle == CalendarMarkerStyle.ICONS) 3 else 4
+                                                cellEvents.take(maxMarkers).forEach { ev ->
+                                                    if (markerStyle == CalendarMarkerStyle.ICONS) {
+                                                        Icon(
+                                                            imageVector = getWasteIcon(ev.wasteTypeId, ev.wasteTypeName),
+                                                            contentDescription = null,
+                                                            tint = parseHexColor(ev.color),
+                                                            modifier = Modifier.size(11.dp)
+                                                        )
+                                                    } else {
+                                                        Box(
+                                                            modifier = Modifier
+                                                                .size(6.dp)
+                                                                .clip(CircleShape)
+                                                                .background(parseHexColor(ev.color))
+                                                        )
+                                                    }
                                                 }
                                             }
                                         }
@@ -909,7 +1219,6 @@ fun CalendarTab(
             }
         }
 
-        // Události vybraného dne
         item {
             Text(
                 text = "Vybraný den: ${formatCzechDateFull(selectedDate)}",
@@ -934,11 +1243,16 @@ fun CalendarTab(
             }
         } else {
             item {
-                DayEventsCard(date = selectedDate, events = selectedDayEvents, today = today)
+                DayEventsCard(
+                    date = selectedDate,
+                    events = selectedDayEvents,
+                    today = today,
+                    markerStyle = markerStyle,
+                    compact = compactCards
+                )
             }
         }
 
-        // Barevná legenda
         item {
             Card(
                 shape = RoundedCornerShape(14.dp),
@@ -961,11 +1275,12 @@ fun CalendarTab(
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.padding(vertical = 2.dp)
                         ) {
-                            Box(
-                                modifier = Modifier
-                                    .size(12.dp)
-                                    .clip(CircleShape)
-                                    .background(parseHexColor(wt.color))
+                            WasteMarkerBadge(
+                                wasteTypeId = wt.id,
+                                wasteName = wt.name,
+                                colorHex = wt.color,
+                                markerStyle = markerStyle,
+                                sizeDp = 15
                             )
                             Spacer(modifier = Modifier.width(8.dp))
                             Text(
@@ -982,31 +1297,256 @@ fun CalendarTab(
     }
 }
 
+/**
+ * Posuvný výběr čísla (hodiny 00-23 nebo minuty 00-59) šoupáním nahoru a dolů.
+ * Pohlcuje vertikální scroll uvnitř válce, aby nedocházelo k posouvání celé stránky při šoupání času.
+ */
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun WheelNumberPicker(
+    range: IntRange,
+    selectedValue: Int,
+    onValueSelected: (Int) -> Unit,
+    label: String,
+    modifier: Modifier = Modifier
+) {
+    val items = remember(range) { range.toList() }
+    val count = items.size
+    // Velký počet opakování pro plynulé nekonečné otáčení nahoru i dolů
+    val repeatFactor = 200
+    val totalCount = count * repeatFactor
+    val middleStart = (repeatFactor / 2) * count + (selectedValue - range.first).coerceIn(0, count - 1)
+
+    val listState = rememberLazyListState(initialFirstVisibleItemIndex = middleStart)
+    val flingBehavior = rememberSnapFlingBehavior(lazyListState = listState)
+    val scope = rememberCoroutineScope()
+
+    // Pohlcení zbylého vertikálního scrollu, aby se při šoupání hodin/minut neposouvala celá karta
+    val nestedScrollConnection = remember {
+        object : NestedScrollConnection {
+            override fun onPostScroll(
+                consumed: Offset,
+                available: Offset,
+                source: NestedScrollSource
+            ): Offset = Offset(0f, available.y)
+
+            override suspend fun onPostFling(consumed: Velocity, available: Velocity): Velocity =
+                Velocity(0f, available.y)
+        }
+    }
+
+    val centeredIndex by remember {
+        derivedStateOf {
+            val layoutInfo = listState.layoutInfo
+            if (layoutInfo.visibleItemsInfo.isEmpty()) {
+                middleStart
+            } else {
+                val viewportCenter = (layoutInfo.viewportStartOffset + layoutInfo.viewportEndOffset) / 2
+                layoutInfo.visibleItemsInfo.minByOrNull { item ->
+                    abs((item.offset + item.size / 2) - viewportCenter)
+                }?.index ?: middleStart
+            }
+        }
+    }
+
+    LaunchedEffect(listState.isScrollInProgress) {
+        if (!listState.isScrollInProgress) {
+            val actualVal = items[centeredIndex % count]
+            if (actualVal != selectedValue) {
+                onValueSelected(actualVal)
+            }
+        }
+    }
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        Text(
+            text = label,
+            fontSize = 11.sp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            fontWeight = FontWeight.Medium
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        Box(
+            modifier = Modifier
+                .width(74.dp)
+                .height(114.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.45f))
+                .nestedScroll(nestedScrollConnection),
+            contentAlignment = Alignment.Center
+        ) {
+            // Zvýrazňovací pruh vybrané střední položky
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(38.dp)
+                    .padding(horizontal = 6.dp)
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.75f))
+                    .border(
+                        width = 1.dp,
+                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.6f),
+                        shape = RoundedCornerShape(8.dp)
+                    )
+            )
+
+            LazyColumn(
+                state = listState,
+                flingBehavior = flingBehavior,
+                contentPadding = PaddingValues(vertical = 38.dp),
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                items(totalCount) { idx ->
+                    val num = items[idx % count]
+                    val isCenter = idx == centeredIndex
+                    Box(
+                        modifier = Modifier
+                            .height(38.dp)
+                            .fillMaxWidth()
+                            .clickable {
+                                scope.launch {
+                                    listState.animateScrollToItem(idx)
+                                    onValueSelected(num)
+                                }
+                            },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "%02d".format(num),
+                            fontSize = if (isCenter) 20.sp else 14.sp,
+                            fontWeight = if (isCenter) FontWeight.ExtraBold else FontWeight.Normal,
+                            color = if (isCenter) {
+                                MaterialTheme.colorScheme.onPrimaryContainer
+                            } else {
+                                MaterialTheme.colorScheme.onSurfaceVariant
+                            },
+                            modifier = Modifier.alpha(if (isCenter) 1f else 0.45f)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun ReminderTimeRowWithWheel(
+    title: String,
+    subtitle: String,
+    enabled: Boolean,
+    onEnabledChange: (Boolean) -> Unit,
+    hour: Int,
+    onHourChange: (Int) -> Unit,
+    minute: Int,
+    onMinuteChange: (Int) -> Unit
+) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(title, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                    if (enabled) {
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Surface(
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                            shape = RoundedCornerShape(50)
+                        ) {
+                            Text(
+                                text = "%02d:%02d".format(hour, minute),
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.ExtraBold,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
+                            )
+                        }
+                    }
+                }
+                Text(
+                    text = subtitle,
+                    fontSize = 12.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+            Switch(checked = enabled, onCheckedChange = onEnabledChange)
+        }
+
+        AnimatedVisibility(visible = enabled) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp, bottom = 4.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                WheelNumberPicker(
+                    range = 0..23,
+                    selectedValue = hour,
+                    onValueSelected = onHourChange,
+                    label = "Hodiny"
+                )
+                Text(
+                    text = ":",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 16.dp)
+                )
+                WheelNumberPicker(
+                    range = 0..59,
+                    selectedValue = minute,
+                    onValueSelected = onMinuteChange,
+                    label = "Minuty"
+                )
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotificationsTab(
     wasteTypes: List<WasteType>,
     places: List<WastePlace>,
+    markerStyle: CalendarMarkerStyle,
     notifyEnabled: Boolean,
     onNotifyEnabledChange: (Boolean) -> Unit,
+    notifyPersistent: Boolean,
+    onNotifyPersistentChange: (Boolean) -> Unit,
     notifyWasteIds: Set<String>,
     onNotifyWasteIdsChange: (Set<String>) -> Unit,
     notifyPlace: String,
     onNotifyPlaceChange: (String) -> Unit,
+    notifyTwoDaysBefore: Boolean,
+    onNotifyTwoDaysBeforeChange: (Boolean) -> Unit,
+    notifyTwoDaysBeforeHour: Int,
+    onNotifyTwoDaysBeforeHourChange: (Int) -> Unit,
+    notifyTwoDaysBeforeMinute: Int,
+    onNotifyTwoDaysBeforeMinuteChange: (Int) -> Unit,
     notifyDayBefore: Boolean,
     onNotifyDayBeforeChange: (Boolean) -> Unit,
     notifyDayBeforeHour: Int,
     onNotifyDayBeforeHourChange: (Int) -> Unit,
+    notifyDayBeforeMinute: Int,
+    onNotifyDayBeforeMinuteChange: (Int) -> Unit,
     notifyDayOf: Boolean,
     onNotifyDayOfChange: (Boolean) -> Unit,
     notifyDayOfHour: Int,
     onNotifyDayOfHourChange: (Int) -> Unit,
-    dbUrl: String,
-    onDbUrlSave: (String) -> Unit,
+    notifyDayOfMinute: Int,
+    onNotifyDayOfMinuteChange: (Int) -> Unit,
     onTestNotification: () -> Unit
 ) {
     var placeExpanded by remember { mutableStateOf(false) }
-    var urlInput by remember(dbUrl) { mutableStateOf(dbUrl) }
 
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -1039,7 +1579,7 @@ fun NotificationsTab(
                                 color = MaterialTheme.colorScheme.onPrimaryContainer
                             )
                             Text(
-                                text = "Automatické připomenutí vybraných komodit v telefonu",
+                                text = "Všechny události dne se spojí do jednoho přehledného oznámení",
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f)
                             )
@@ -1062,7 +1602,7 @@ fun NotificationsTab(
             }
         }
 
-        // Kdy upozornit
+        // Kdy posílat upozornění (Dva dny předem, Den předem, V den svozu – každé s vlastním šoupáním hodin a minut)
         item {
             Card(
                 shape = RoundedCornerShape(14.dp),
@@ -1072,70 +1612,83 @@ fun NotificationsTab(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(14.dp)
                 ) {
                     Text(
                         text = "Kdy posílat upozornění",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 15.sp
+                        fontSize = 16.sp
+                    )
+                    Text(
+                        text = "Aktivujte požadované předstihy a šoupáním nahoru/dolů nastavte přesnou hodinu a minutu:",
+                        fontSize = 12.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
 
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Column(modifier = Modifier.weight(1f)) {
-                            Text("Den předem večer", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                            Text(
-                                "Připomene připravit popelnici nebo pytel večer před svozem (od $notifyDayBeforeHour:00)",
-                                fontSize = 12.sp,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
-                            )
-                        }
-                        Switch(checked = notifyDayBefore, onCheckedChange = onNotifyDayBeforeChange)
-                    }
-
-                    if (notifyDayBefore) {
-                        LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                            items(listOf(15, 16, 17, 18, 19, 20, 21)) { h ->
-                                FilterChip(
-                                    selected = notifyDayBeforeHour == h,
-                                    onClick = { onNotifyDayBeforeHourChange(h) },
-                                    label = { Text("$h:00") }
-                                )
-                            }
-                        }
-                    }
+                    // 1) Dva dny předem
+                    ReminderTimeRowWithWheel(
+                        title = "Dva dny předem",
+                        subtitle = "Upozorní 2 dny před termínem svozu v nastavený čas",
+                        enabled = notifyTwoDaysBefore,
+                        onEnabledChange = onNotifyTwoDaysBeforeChange,
+                        hour = notifyTwoDaysBeforeHour,
+                        onHourChange = onNotifyTwoDaysBeforeHourChange,
+                        minute = notifyTwoDaysBeforeMinute,
+                        onMinuteChange = onNotifyTwoDaysBeforeMinuteChange
+                    )
 
                     HorizontalDivider()
 
+                    // 2) Den předem
+                    ReminderTimeRowWithWheel(
+                        title = "Den předem",
+                        subtitle = "Připomene nachystat popelnici nebo pytel den před svozem",
+                        enabled = notifyDayBefore,
+                        onEnabledChange = onNotifyDayBeforeChange,
+                        hour = notifyDayBeforeHour,
+                        onHourChange = onNotifyDayBeforeHourChange,
+                        minute = notifyDayBeforeMinute,
+                        onMinuteChange = onNotifyDayBeforeMinuteChange
+                    )
+
+                    HorizontalDivider()
+
+                    // 3) V den svozu
+                    ReminderTimeRowWithWheel(
+                        title = "V den svozu",
+                        subtitle = "Připomenutí přímo v den, kdy probíhá svoz odpadu",
+                        enabled = notifyDayOf,
+                        onEnabledChange = onNotifyDayOfChange,
+                        hour = notifyDayOfHour,
+                        onHourChange = onNotifyDayOfHourChange,
+                        minute = notifyDayOfMinute,
+                        onMinuteChange = onNotifyDayOfMinuteChange
+                    )
+
+                    HorizontalDivider()
+
+                    // Trvalé upozornění (ochrana proti smazání všech upozornění)
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
-                            Text("V den svozu ráno", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
                             Text(
-                                "Ranní připomenutí v den svozu (od $notifyDayOfHour:00)",
+                                text = "Trvalé upozornění (ochrana proti přehlédnutí)",
+                                fontWeight = FontWeight.SemiBold,
+                                fontSize = 14.sp
+                            )
+                            Text(
+                                text = "Nelze omylem smazat přejetím ani při smazání všech oznámení – zmizí až po kliknutí na oznámení a přechodu do aplikace",
                                 fontSize = 12.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                         }
-                        Switch(checked = notifyDayOf, onCheckedChange = onNotifyDayOfChange)
-                    }
-
-                    if (notifyDayOf) {
-                        LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                            items(listOf(5, 6, 7, 8)) { h ->
-                                FilterChip(
-                                    selected = notifyDayOfHour == h,
-                                    onClick = { onNotifyDayOfHourChange(h) },
-                                    label = { Text("0$h:00") }
-                                )
-                            }
-                        }
+                        Switch(
+                            checked = notifyPersistent,
+                            onCheckedChange = onNotifyPersistentChange
+                        )
                     }
                 }
             }
@@ -1199,7 +1752,7 @@ fun NotificationsTab(
             }
         }
 
-        // Výběr typů odpadu pro upozornění (všechny položky z tlačítka "Filtr")
+        // Výběr typů odpadu pro upozornění
         item {
             Card(
                 shape = RoundedCornerShape(14.dp),
@@ -1260,11 +1813,12 @@ fun NotificationsTab(
                                     onNotifyWasteIdsChange(next)
                                 }
                             )
-                            Box(
-                                modifier = Modifier
-                                    .size(14.dp)
-                                    .clip(CircleShape)
-                                    .background(parseHexColor(wt.color))
+                            WasteMarkerBadge(
+                                wasteTypeId = wt.id,
+                                wasteName = wt.name,
+                                colorHex = wt.color,
+                                markerStyle = markerStyle,
+                                sizeDp = 18
                             )
                             Spacer(modifier = Modifier.width(10.dp))
                             Column(modifier = Modifier.weight(1f)) {
@@ -1279,44 +1833,6 @@ fun NotificationsTab(
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Zdroj dat (GitHub Pages JSON)
-        item {
-            Card(
-                shape = RoundedCornerShape(14.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Text(
-                        text = "Zdroj dat (GitHub Pages)",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp
-                    )
-                    OutlinedTextField(
-                        value = urlInput,
-                        onValueChange = { urlInput = it },
-                        label = { Text("URL JSON databáze") },
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true
-                    )
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.End
-                    ) {
-                        FilledTonalButton(onClick = { onDbUrlSave(urlInput) }) {
-                            Icon(Icons.Default.Save, contentDescription = null, modifier = Modifier.size(16.dp))
-                            Spacer(modifier = Modifier.width(6.dp))
-                            Text("Uložit a synchronizovat")
                         }
                     }
                 }

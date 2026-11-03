@@ -1,5 +1,6 @@
 package cz.lostice.svozodpadu.data
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -9,11 +10,12 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.google.gson.Gson
 import cz.lostice.svozodpadu.MainActivity
+import cz.lostice.svozodpadu.model.AppThemeMode
+import cz.lostice.svozodpadu.model.CalendarMarkerStyle
 import cz.lostice.svozodpadu.model.WasteCalendarData
 import cz.lostice.svozodpadu.model.WasteEvent
-import cz.lostice.svozodpadu.model.WastePlace
-import cz.lostice.svozodpadu.model.WasteType
 import cz.lostice.svozodpadu.model.formatCzechDateFull
+import cz.lostice.svozodpadu.model.formatCzechDateShort
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -21,6 +23,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 class WasteRepository(private val context: Context) {
 
@@ -30,24 +33,44 @@ class WasteRepository(private val context: Context) {
 
     companion object {
         const val PREFS_NAME = "svoz_lostice_prefs"
-        const val KEY_DATABASE_URL = "database_url"
+        const val DATABASE_URL = "https://bladecz.github.io/svoz-odpadu-lostice/data/calendar.json"
+        const val CHANNEL_ID = "svoz_odpadu_lostice_channel"
+        const val ACTIVE_NOTIFICATION_ID = 202611
+
+        // Filtry kalendáře
         const val KEY_FILTER_WASTE_ID = "filter_waste_id"
         const val KEY_FILTER_PLACE = "filter_place"
         const val KEY_HIDE_YARD_IN_LIST = "hide_yard_in_list"
 
+        // Upozornění – filtry a chování
         const val KEY_NOTIFY_ENABLED = "notify_enabled"
         const val KEY_NOTIFY_WASTE_IDS = "notify_waste_ids"
         const val KEY_NOTIFY_PLACE = "notify_place"
+        const val KEY_NOTIFY_PERSISTENT = "notify_persistent"
+
+        // 1) Dva dny předem
+        const val KEY_NOTIFY_TWO_DAYS_BEFORE = "notify_two_days_before"
+        const val KEY_NOTIFY_TWO_DAYS_BEFORE_HOUR = "notify_two_days_before_hour"
+        const val KEY_NOTIFY_TWO_DAYS_BEFORE_MINUTE = "notify_two_days_before_minute"
+
+        // 2) Den předem
         const val KEY_NOTIFY_DAY_BEFORE = "notify_day_before"
         const val KEY_NOTIFY_DAY_BEFORE_HOUR = "notify_day_before_hour"
+        const val KEY_NOTIFY_DAY_BEFORE_MINUTE = "notify_day_before_minute"
+
+        // 3) V den svozu
         const val KEY_NOTIFY_DAY_OF = "notify_day_of"
         const val KEY_NOTIFY_DAY_OF_HOUR = "notify_day_of_hour"
+        const val KEY_NOTIFY_DAY_OF_MINUTE = "notify_day_of_minute"
+
         const val KEY_SENT_NOTIFICATIONS = "sent_notifications"
 
-        const val DEFAULT_DATABASE_URL = "https://bladecz.github.io/svoz-odpadu-lostice/data/calendar.json"
-        const val CHANNEL_ID = "svoz_odpadu_lostice_channel"
+        // Customizace vzhledu (Nastavení)
+        const val KEY_THEME_MODE = "ui_theme_mode"
+        const val KEY_CALENDAR_MARKER_STYLE = "ui_calendar_marker_style"
+        const val KEY_COMPACT_CARDS = "ui_compact_cards"
+        const val KEY_HIGHLIGHT_CALENDAR_CELLS = "ui_highlight_calendar_cells"
 
-        // Výchozí ID typů odpadu pro upozornění (všechny svozy kromě provozní doby sběrného dvora)
         val DEFAULT_NOTIFY_IDS = setOf("7", "12", "2", "10", "11", "8", "3", "9", "14")
     }
 
@@ -62,19 +85,11 @@ class WasteRepository(private val context: Context) {
                 "Upozornění na svoz odpadu",
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
-                description = "Upozornění na nadcházející svozy komunálního odpadu, plastů, bioodpadu a dalších komodit v Lošticích"
+                description = "Upozornění na nadcházející svozy odpadu v Lošticích"
             }
             val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nm.createNotificationChannel(channel)
         }
-    }
-
-    // --- Nastavení URL ---
-    fun getDatabaseUrl(): String =
-        prefs.getString(KEY_DATABASE_URL, DEFAULT_DATABASE_URL) ?: DEFAULT_DATABASE_URL
-
-    fun setDatabaseUrl(url: String) {
-        prefs.edit().putString(KEY_DATABASE_URL, url.trim()).apply()
     }
 
     // --- Filtry zobrazení v kalendáři ---
@@ -121,6 +136,36 @@ class WasteRepository(private val context: Context) {
         prefs.edit().putString(KEY_NOTIFY_PLACE, place).apply()
     }
 
+    fun isPersistentNotification(): Boolean =
+        prefs.getBoolean(KEY_NOTIFY_PERSISTENT, false)
+
+    fun setPersistentNotification(persistent: Boolean) {
+        prefs.edit().putBoolean(KEY_NOTIFY_PERSISTENT, persistent).apply()
+    }
+
+    // 1) Dva dny předem
+    fun isNotifyTwoDaysBefore(): Boolean =
+        prefs.getBoolean(KEY_NOTIFY_TWO_DAYS_BEFORE, false)
+
+    fun setNotifyTwoDaysBefore(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_NOTIFY_TWO_DAYS_BEFORE, enabled).apply()
+    }
+
+    fun getNotifyTwoDaysBeforeHour(): Int =
+        prefs.getInt(KEY_NOTIFY_TWO_DAYS_BEFORE_HOUR, 18)
+
+    fun setNotifyTwoDaysBeforeHour(hour: Int) {
+        prefs.edit().putInt(KEY_NOTIFY_TWO_DAYS_BEFORE_HOUR, hour.coerceIn(0, 23)).apply()
+    }
+
+    fun getNotifyTwoDaysBeforeMinute(): Int =
+        prefs.getInt(KEY_NOTIFY_TWO_DAYS_BEFORE_MINUTE, 0)
+
+    fun setNotifyTwoDaysBeforeMinute(minute: Int) {
+        prefs.edit().putInt(KEY_NOTIFY_TWO_DAYS_BEFORE_MINUTE, minute.coerceIn(0, 59)).apply()
+    }
+
+    // 2) Den předem
     fun isNotifyDayBefore(): Boolean =
         prefs.getBoolean(KEY_NOTIFY_DAY_BEFORE, true)
 
@@ -135,6 +180,14 @@ class WasteRepository(private val context: Context) {
         prefs.edit().putInt(KEY_NOTIFY_DAY_BEFORE_HOUR, hour.coerceIn(0, 23)).apply()
     }
 
+    fun getNotifyDayBeforeMinute(): Int =
+        prefs.getInt(KEY_NOTIFY_DAY_BEFORE_MINUTE, 0)
+
+    fun setNotifyDayBeforeMinute(minute: Int) {
+        prefs.edit().putInt(KEY_NOTIFY_DAY_BEFORE_MINUTE, minute.coerceIn(0, 59)).apply()
+    }
+
+    // 3) V den svozu
     fun isNotifyDayOf(): Boolean =
         prefs.getBoolean(KEY_NOTIFY_DAY_OF, false)
 
@@ -149,11 +202,49 @@ class WasteRepository(private val context: Context) {
         prefs.edit().putInt(KEY_NOTIFY_DAY_OF_HOUR, hour.coerceIn(0, 23)).apply()
     }
 
+    fun getNotifyDayOfMinute(): Int =
+        prefs.getInt(KEY_NOTIFY_DAY_OF_MINUTE, 0)
+
+    fun setNotifyDayOfMinute(minute: Int) {
+        prefs.edit().putInt(KEY_NOTIFY_DAY_OF_MINUTE, minute.coerceIn(0, 59)).apply()
+    }
+
+    // --- Customizace vzhledu ---
+    fun getThemeMode(): AppThemeMode =
+        AppThemeMode.fromId(prefs.getString(KEY_THEME_MODE, AppThemeMode.SYSTEM.id) ?: AppThemeMode.SYSTEM.id)
+
+    fun setThemeMode(mode: AppThemeMode) {
+        prefs.edit().putString(KEY_THEME_MODE, mode.id).apply()
+    }
+
+    fun getCalendarMarkerStyle(): CalendarMarkerStyle =
+        CalendarMarkerStyle.fromId(
+            prefs.getString(KEY_CALENDAR_MARKER_STYLE, CalendarMarkerStyle.DOTS.id) ?: CalendarMarkerStyle.DOTS.id
+        )
+
+    fun setCalendarMarkerStyle(style: CalendarMarkerStyle) {
+        prefs.edit().putString(KEY_CALENDAR_MARKER_STYLE, style.id).apply()
+    }
+
+    fun isCompactCards(): Boolean =
+        prefs.getBoolean(KEY_COMPACT_CARDS, false)
+
+    fun setCompactCards(compact: Boolean) {
+        prefs.edit().putBoolean(KEY_COMPACT_CARDS, compact).apply()
+    }
+
+    fun isHighlightCalendarCells(): Boolean =
+        prefs.getBoolean(KEY_HIGHLIGHT_CALENDAR_CELLS, false)
+
+    fun setHighlightCalendarCells(highlight: Boolean) {
+        prefs.edit().putBoolean(KEY_HIGHLIGHT_CALENDAR_CELLS, highlight).apply()
+    }
+
     // --- Načtení dat (Online -> Lokální cache -> Bundled Assets) ---
     suspend fun loadCalendarData(forceNetwork: Boolean = true): WasteCalendarData = withContext(Dispatchers.IO) {
         if (forceNetwork) {
             try {
-                val url = URL(getDatabaseUrl())
+                val url = URL(DATABASE_URL)
                 val conn = (url.openConnection() as HttpURLConnection).apply {
                     connectTimeout = 8000
                     readTimeout = 8000
@@ -169,7 +260,6 @@ class WasteRepository(private val context: Context) {
                     }
                 }
             } catch (_: Exception) {
-                // Při výpadku sítě přejdeme na cache nebo vestavěná data v assets
             }
         }
 
@@ -196,7 +286,7 @@ class WasteRepository(private val context: Context) {
         WasteCalendarData()
     }
 
-    // --- Kontrola a odeslání naplánovaných upozornění ---
+    // --- Kontrola a odeslání JEDNOHO souhrnného upozornění ---
     suspend fun checkAndSendNotifications() {
         if (!isNotificationsEnabled()) return
 
@@ -205,60 +295,94 @@ class WasteRepository(private val context: Context) {
         val placeFilter = getNotifyPlace()
         val now = LocalDateTime.now()
         val today = now.toLocalDate()
-        val tomorrow = today.plusDays(1)
+        val currentTime = now.toLocalTime()
 
         val sentSet = (prefs.getStringSet(KEY_SENT_NOTIFICATIONS, emptySet()) ?: emptySet()).toMutableSet()
+        val summaryLines = mutableListOf<String>()
+        var mainTitle = "Upozornění na svoz odpadu"
 
-        // 1) Upozornění den předem (např. po 18:00 na zítřejší svoz)
-        if (isNotifyDayBefore() && now.hour >= getNotifyDayBeforeHour()) {
-            val tomorrowEvents = data.events.filter { ev ->
-                ev.localDate == tomorrow &&
+        // Pomocná funkce pro sestavení 1 souhrnného řádku za daný den
+        fun checkOffset(
+            enabled: Boolean,
+            daysAhead: Long,
+            targetHour: Int,
+            targetMinute: Int,
+            prefixLabel: String,
+            keyPrefix: String
+        ) {
+            if (!enabled) return
+            val triggerTime = LocalTime.of(targetHour, targetMinute)
+            if (currentTime.isBefore(triggerTime)) return
+
+            val targetDate = today.plusDays(daysAhead)
+            val matchingEvents = data.events.filter { ev ->
+                ev.localDate == targetDate &&
                     allowedTypeIds.contains(ev.wasteTypeId) &&
                     ev.matchesPlace(placeFilter)
             }
-            if (tomorrowEvents.isNotEmpty()) {
-                val notifKey = "before_${tomorrow}_${tomorrowEvents.joinToString(",") { it.wasteTypeId }}"
-                if (!sentSet.contains(notifKey)) {
-                    val names = tomorrowEvents.joinToString(", ") { it.shortName }
-                    val places = tomorrowEvents.flatMap { it.places }.distinct().joinToString(", ")
-                    sendNotification(
-                        notificationId = tomorrow.hashCode(),
-                        title = "Zítra proběhne svoz odpadu!",
-                        message = "$names (${formatCzechDateFull(tomorrow)} • $places)"
-                    )
-                    sentSet.add(notifKey)
-                }
-            }
+            if (matchingEvents.isEmpty()) return
+
+            // Unikátní klíč pro tento den a typ předstihu (odesílá se jen jednou)
+            val notifKey = "${keyPrefix}_${targetDate}"
+            if (sentSet.contains(notifKey)) return
+
+            val uniqueNames = matchingEvents.map { it.shortName }.distinct().joinToString(", ")
+            val uniquePlaces = matchingEvents.flatMap { it.places }.distinct().joinToString(", ")
+            summaryLines.add("$prefixLabel (${formatCzechDateShort(targetDate)}): $uniqueNames [$uniquePlaces]")
+            mainTitle = "$prefixLabel proběhne svoz odpadu!"
+            sentSet.add(notifKey)
         }
 
-        // 2) Upozornění v den svozu ráno (např. po 06:00 na dnešní svoz)
-        if (isNotifyDayOf() && now.hour in getNotifyDayOfHour()..11) {
-            val todayEvents = data.events.filter { ev ->
-                ev.localDate == today &&
-                    allowedTypeIds.contains(ev.wasteTypeId) &&
-                    ev.matchesPlace(placeFilter)
-            }
-            if (todayEvents.isNotEmpty()) {
-                val notifKey = "dayof_${today}_${todayEvents.joinToString(",") { it.wasteTypeId }}"
-                if (!sentSet.contains(notifKey)) {
-                    val names = todayEvents.joinToString(", ") { it.shortName }
-                    val places = todayEvents.flatMap { it.places }.distinct().joinToString(", ")
-                    sendNotification(
-                        notificationId = today.hashCode() + 1000,
-                        title = "Dnes probíhá svoz odpadu!",
-                        message = "$names (${formatCzechDateFull(today)} • $places)"
-                    )
-                    sentSet.add(notifKey)
-                }
-            }
-        }
+        // 1) V den svozu
+        checkOffset(
+            enabled = isNotifyDayOf(),
+            daysAhead = 0,
+            targetHour = getNotifyDayOfHour(),
+            targetMinute = getNotifyDayOfMinute(),
+            prefixLabel = "Dnes",
+            keyPrefix = "dayof"
+        )
 
-        // Udržet v paměti jen posledních 60 klíčů
-        val trimmed = if (sentSet.size > 60) sentSet.toList().takeLast(60).toSet() else sentSet
-        prefs.edit().putStringSet(KEY_SENT_NOTIFICATIONS, trimmed).apply()
+        // 2) Den předem
+        checkOffset(
+            enabled = isNotifyDayBefore(),
+            daysAhead = 1,
+            targetHour = getNotifyDayBeforeHour(),
+            targetMinute = getNotifyDayBeforeMinute(),
+            prefixLabel = "Zítra",
+            keyPrefix = "daybefore"
+        )
+
+        // 3) Dva dny předem
+        checkOffset(
+            enabled = isNotifyTwoDaysBefore(),
+            daysAhead = 2,
+            targetHour = getNotifyTwoDaysBeforeHour(),
+            targetMinute = getNotifyTwoDaysBeforeMinute(),
+            prefixLabel = "Pozítří",
+            keyPrefix = "twodaysbefore"
+        )
+
+        // Pokud je co oznámit, pošleme VŽDY JEN JEDNO souhrnné oznámení!
+        if (summaryLines.isNotEmpty()) {
+            val finalTitle = if (summaryLines.size > 1) {
+                "Připomenutí nadcházejících svozů odpadu"
+            } else {
+                mainTitle
+            }
+            val finalBody = summaryLines.joinToString("\n")
+            sendNotification(
+                notificationId = ACTIVE_NOTIFICATION_ID,
+                title = finalTitle,
+                message = finalBody
+            )
+
+            val trimmed = if (sentSet.size > 90) sentSet.toList().takeLast(90).toSet() else sentSet
+            prefs.edit().putStringSet(KEY_SENT_NOTIFICATIONS, trimmed).apply()
+        }
     }
 
-    // --- Testovací upozornění (najde nejbližší budoucí svoz podle filtru) ---
+    // --- Testovací upozornění (vždy 1 souhrnné oznámení pro nejbližší den svozu) ---
     fun sendTestNotification(events: List<WasteEvent>) {
         val allowedTypeIds = getNotifyWasteTypeIds()
         val placeFilter = getNotifyPlace()
@@ -277,25 +401,31 @@ class WasteRepository(private val context: Context) {
                     allowedTypeIds.contains(ev.wasteTypeId) &&
                     ev.matchesPlace(placeFilter)
             }
-            val names = sameDayEvents.joinToString(", ") { it.shortName }
-            val places = sameDayEvents.flatMap { it.places }.distinct().joinToString(", ")
+            val uniqueNames = sameDayEvents.map { it.shortName }.distinct().joinToString(", ")
+            val uniquePlaces = sameDayEvents.flatMap { it.places }.distinct().joinToString(", ")
             sendNotification(
-                notificationId = 99999,
+                notificationId = ACTIVE_NOTIFICATION_ID,
                 title = "Nejbližší svoz: ${formatCzechDateFull(nextEvent.localDate!!)}",
-                message = "$names • Místo: $places"
+                message = "Bude se svážet: $uniqueNames\nMísto: $uniquePlaces"
             )
         } else {
             sendNotification(
-                notificationId = 99999,
+                notificationId = ACTIVE_NOTIFICATION_ID,
                 title = "Test upozornění – Svoz odpadu Loštice",
                 message = "Upozornění fungují správně! Pro vybraný filtr momentálně není žádný nadcházející záznam."
             )
         }
     }
 
+    fun cancelActiveNotifications() {
+        val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        nm.cancel(ACTIVE_NOTIFICATION_ID)
+    }
+
     private fun sendNotification(notificationId: Int, title: String, message: String) {
         val intent = Intent(context, MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            putExtra("FROM_NOTIFICATION", true)
         }
         val pendingIntent = PendingIntent.getActivity(
             context,
@@ -304,15 +434,30 @@ class WasteRepository(private val context: Context) {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        val notification = NotificationCompat.Builder(context, CHANNEL_ID)
+        val persistent = isPersistentNotification()
+
+        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.ic_popup_reminder)
             .setContentTitle(title)
             .setContentText(message)
             .setStyle(NotificationCompat.BigTextStyle().bigText(message))
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .build()
+            .setOngoing(persistent)
+            .setAutoCancel(!persistent)
+
+        if (persistent) {
+            builder.addAction(
+                android.R.drawable.ic_menu_view,
+                "Otevřít a potvrdit",
+                pendingIntent
+            )
+        }
+
+        val notification = builder.build()
+        if (persistent) {
+            notification.flags = notification.flags or Notification.FLAG_ONGOING_EVENT or Notification.FLAG_NO_CLEAR
+        }
 
         val nm = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         try {

@@ -1,0 +1,69 @@
+name: Automatická aktualizace kalendáře svozu odpadu
+
+on:
+  schedule:
+    # Běží každý den v 05:00 UTC (6:00 SEČ / 7:00 SELČ)
+    - cron: '0 5 * * *'
+  workflow_dispatch: # Možnost spustit ručně tlačítkem v GitHub Actions
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  scrape-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kódu
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Nastavení Pythonu
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Spuštění scraperu kalendáře Loštice
+        run: |
+          python scraper/scraper.py
+
+      - name: Kopírování dat do Android assets a Webu (GitHub Pages)
+        run: |
+          mkdir -p web/data android/app/src/main/assets
+          cp data/calendar.json web/data/calendar.json
+          cp data/calendar.csv web/data/calendar.csv
+          cp data/calendar.ics web/data/calendar.ics
+          cp data/calendar.json android/app/src/main/assets/calendar.json
+
+      - name: Commit a Push aktualizovaných dat
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/ web/data/ android/app/src/main/assets/calendar.json
+          if git diff --staged --quiet; then
+            echo "Žádné nové změny v kalendáři svozu."
+          else
+            git commit -m "Automatická aktualizace kalendáře svozu odpadu Loštice [skip ci]"
+            git push
+          fi
+
+      - name: Nastavení GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Nahrání artefaktu pro GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'web'
+
+      - name: Publikace na GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

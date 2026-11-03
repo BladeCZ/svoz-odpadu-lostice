@@ -1,0 +1,8 @@
+{
+  "name": "Svoz odpadu Loštice",
+  "short_name": "Odpady Loštice",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7"
+}

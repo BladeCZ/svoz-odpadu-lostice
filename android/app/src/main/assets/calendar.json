@@ -1,0 +1,4066 @@
+{
+  "municipality": "Město Loštice",
+  "sourceUrl": "https://www.mu-lostice.cz/obcan/komunalni-sluzby/",
+  "updatedAt": "2026-11-03T19:23:37.362431+00:00",
+  "wasteTypes": [
+    {
+      "id": "7",
+      "name": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "color": "#00aeef",
+      "category": "sko_14",
+      "defaultNotify": true,
+      "isCollection": true
+    },
+    {
+      "id": "12",
+      "name": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "color": "#fdc68c",
+      "category": "sko_28",
+      "defaultNotify": false,
+      "isCollection": true
+    },
+    {
+      "id": "2",
+      "name": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "color": "#ffff00",
+      "category": "plast",
+      "defaultNotify": true,
+      "isCollection": true
+    },
+    {
+      "id": "10",
+      "name": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "color": "#ff0000",
+      "category": "bio_14",
+      "defaultNotify": true,
+      "isCollection": true
+    },
+    {
+      "id": "11",
+      "name": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "color": "#37b44a",
+      "category": "bio_28",
+      "defaultNotify": false,
+      "isCollection": true
+    },
+    {
+      "id": "8",
+      "name": "Svoz bioodpadu",
+      "shortName": "Bioodpad",
+      "color": "#8b5e3c",
+      "category": "bio",
+      "defaultNotify": true,
+      "isCollection": true
+    },
+    {
+      "id": "3",
+      "name": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "color": "#ed008c",
+      "category": "oleje",
+      "defaultNotify": true,
+      "isCollection": true
+    },
+    {
+      "id": "13",
+      "name": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "color": "#7c4900",
+      "category": "gastro",
+      "defaultNotify": false,
+      "isCollection": true
+    },
+    {
+      "id": "9",
+      "name": "Velkoobjemové kontejnery na listí",
+      "shortName": "Kontejnery na listí",
+      "color": "#6aa84f",
+      "category": "listi",
+      "defaultNotify": true,
+      "isCollection": true
+    },
+    {
+      "id": "14",
+      "name": "Likvidace větví z jarního ořezu stromů",
+      "shortName": "Likvidace větví",
+      "color": "#38761d",
+      "category": "vetve",
+      "defaultNotify": true,
+      "isCollection": true
+    },
+    {
+      "id": "4",
+      "name": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "color": "#333333",
+      "category": "sberny_dvur",
+      "defaultNotify": false,
+      "isCollection": false
+    },
+    {
+      "id": "6",
+      "name": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "color": "#555555",
+      "category": "sberny_dvur_vikend",
+      "defaultNotify": false,
+      "isCollection": false
+    }
+  ],
+  "places": [
+    {
+      "id": "2",
+      "name": "Loštice"
+    },
+    {
+      "id": "5",
+      "name": "Žádlovice a Vlčice"
+    },
+    {
+      "id": "6",
+      "name": "Sídliště"
+    },
+    {
+      "id": "8",
+      "name": "ulice Sokolská"
+    },
+    {
+      "id": "3",
+      "name": "ulice Moravičanská"
+    },
+    {
+      "id": "4",
+      "name": "ulice Olomoucká"
+    },
+    {
+      "id": "7",
+      "name": "ulice Ke Koupališti"
+    }
+  ],
+  "events": [
+    {
+      "id": "c60cf54bcb17",
+      "date": "2026-01-03",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "af3439d45720",
+      "date": "2026-01-05",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "8c326d66f308",
+      "date": "2026-01-05",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "ddb817c512ce",
+      "date": "2026-01-07",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "69994bf5a00e",
+      "date": "2026-01-07",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "4529677816c2",
+      "date": "2026-01-07",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "d23ec34db0e2",
+      "date": "2026-01-12",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "f94a90d2d188",
+      "date": "2026-01-12",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "775516a1f473",
+      "date": "2026-01-13",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "3cca20cb4ebd",
+      "date": "2026-01-13",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "783fa4efb882",
+      "date": "2026-01-14",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "b1ae7fae1ce5",
+      "date": "2026-01-17",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "1f2bad1d137d",
+      "date": "2026-01-19",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "8a98b880ad8c",
+      "date": "2026-01-19",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "54b160f2e4b5",
+      "date": "2026-01-21",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "e18b9fed9f02",
+      "date": "2026-01-26",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "bfffe9ff9250",
+      "date": "2026-01-26",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "72055fad19a7",
+      "date": "2026-01-27",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "17052cceb958",
+      "date": "2026-01-28",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "Svoz bioodpadu interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "d1674558eab2",
+      "date": "2026-01-28",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "e63101a913d8",
+      "date": "2026-01-28",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "9f7f25bb3937",
+      "date": "2026-01-31",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "d54ac4df22aa",
+      "date": "2026-02-02",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "ad3de2366017",
+      "date": "2026-02-02",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "b05f553acebd",
+      "date": "2026-02-04",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "7113cf2704a3",
+      "date": "2026-02-04",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "aa94f2f76518",
+      "date": "2026-02-04",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "f4030486439f",
+      "date": "2026-02-09",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "84d6d4ceaafb",
+      "date": "2026-02-09",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "3a053899bc73",
+      "date": "2026-02-10",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "233ef452aad6",
+      "date": "2026-02-10",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "ad187c3bb58e",
+      "date": "2026-02-11",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "1f82f766590a",
+      "date": "2026-02-14",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "cbedfd180f6d",
+      "date": "2026-02-16",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "ab646f451ac9",
+      "date": "2026-02-16",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "a0b1aad95657",
+      "date": "2026-02-18",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "6ad2262a7587",
+      "date": "2026-02-23",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "78b49d973a85",
+      "date": "2026-02-23",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "f6e045136bac",
+      "date": "2026-02-24",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "51bd2b9eb73c",
+      "date": "2026-02-25",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "Svoz bioodpadu interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "d3ad6f458a7b",
+      "date": "2026-02-25",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "c2e81608cbd4",
+      "date": "2026-02-25",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "8aed6333e861",
+      "date": "2026-02-28",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "23a11d87b4c5",
+      "date": "2026-03-02",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "442c374e74d8",
+      "date": "2026-03-02",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "846d7be474ac",
+      "date": "2026-03-04",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "5a6fde014426",
+      "date": "2026-03-04",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "915e6e96dea2",
+      "date": "2026-03-04",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "9d26aff7fac8",
+      "date": "2026-03-09",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "28833996f1a1",
+      "date": "2026-03-09",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "1640009c3dec",
+      "date": "2026-03-10",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "c17cef882f7b",
+      "date": "2026-03-10",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "724ed4bcc5d4",
+      "date": "2026-03-11",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "25c91a92de46",
+      "date": "2026-03-14",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "6ddefd4abac2",
+      "date": "2026-03-16",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "8617ed80be23",
+      "date": "2026-03-16",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "ff63f10009bf",
+      "date": "2026-03-18",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "bcd075072c4c",
+      "date": "2026-03-23",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "9166bbb43082",
+      "date": "2026-03-23",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "669ac09421f9",
+      "date": "2026-03-24",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "6e01ba2db58c",
+      "date": "2026-03-25",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "Svoz bioodpadu interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "499aeea635df",
+      "date": "2026-03-25",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "42c238843b4d",
+      "date": "2026-03-25",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "263b7472dacd",
+      "date": "2026-03-28",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "04bcd93acd11",
+      "date": "2026-03-30",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "046542983613",
+      "date": "2026-03-30",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "8c38178946d7",
+      "date": "2026-04-01",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "499a914e84da",
+      "date": "2026-04-01",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "f72d99654b3a",
+      "date": "2026-04-01",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "aff71155839d",
+      "date": "2026-04-06",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "67a2c06a0b8f",
+      "date": "2026-04-07",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "c2e818914e37",
+      "date": "2026-04-07",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "9cca8eaa7a94",
+      "date": "2026-04-08",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "7be33a1ab8ad",
+      "date": "2026-04-08",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "149d2756fe1d",
+      "date": "2026-04-11",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "fefae92010f6",
+      "date": "2026-04-13",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "ca9fe97ba4a8",
+      "date": "2026-04-13",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "c37ea706e9ec",
+      "date": "2026-04-15",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "523c5e85f43a",
+      "date": "2026-04-20",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "9a7a49eca43b",
+      "date": "2026-04-20",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "eaa4f7a57d0c",
+      "date": "2026-04-21",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "853253de69d6",
+      "date": "2026-04-22",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "87e37a510438",
+      "date": "2026-04-22",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "bd1b848a0151",
+      "date": "2026-04-22",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "e884702a628a",
+      "date": "2026-04-25",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "11733d67f95e",
+      "date": "2026-04-27",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "2b07a46ae851",
+      "date": "2026-04-27",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "5a1122b94f3f",
+      "date": "2026-04-29",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "c4f7888b990d",
+      "date": "2026-05-04",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "ee9d22b684c5",
+      "date": "2026-05-04",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "f3a06b9de8bc",
+      "date": "2026-05-05",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "2baad902a252",
+      "date": "2026-05-05",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "8c619d2fa2f1",
+      "date": "2026-05-06",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "ffb58d6552d1",
+      "date": "2026-05-06",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "2ce3dbaab85e",
+      "date": "2026-05-06",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "a6a10831344c",
+      "date": "2026-05-06",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "5ecf2260f78f",
+      "date": "2026-05-09",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "97400b668eae",
+      "date": "2026-05-11",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "3ac09fe02530",
+      "date": "2026-05-11",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "38f064915771",
+      "date": "2026-05-13",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "c318aad06470",
+      "date": "2026-05-18",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "68c98f8f05e1",
+      "date": "2026-05-18",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "78d2d3b4ded7",
+      "date": "2026-05-19",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "6316e6bbc1eb",
+      "date": "2026-05-20",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "40e74a4f8769",
+      "date": "2026-05-20",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "dc06a06bbd75",
+      "date": "2026-05-20",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "d0ee7f2f483f",
+      "date": "2026-05-23",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "61fd8578da95",
+      "date": "2026-05-25",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "1da57b8e71bf",
+      "date": "2026-05-25",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "7e59c1b8a621",
+      "date": "2026-05-27",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "f117659d1037",
+      "date": "2026-06-01",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "fd6930f3f1c3",
+      "date": "2026-06-01",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "1e0069d3054d",
+      "date": "2026-06-02",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "06143d0f3522",
+      "date": "2026-06-02",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "8bf9ec16ec4c",
+      "date": "2026-06-03",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "7e49473f9858",
+      "date": "2026-06-03",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "a1a2f4447cf5",
+      "date": "2026-06-03",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "3c45bd4b807d",
+      "date": "2026-06-03",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "ca7f120adfd8",
+      "date": "2026-06-06",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "33f792984238",
+      "date": "2026-06-08",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "460bb961065d",
+      "date": "2026-06-08",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "d18b4a445a59",
+      "date": "2026-06-10",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "16b41389c935",
+      "date": "2026-06-15",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "e7585d0290b4",
+      "date": "2026-06-15",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "8e7698e8fa0b",
+      "date": "2026-06-16",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "b2495288c264",
+      "date": "2026-06-17",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "3bf53da9091d",
+      "date": "2026-06-17",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "ad1c0a52fcdd",
+      "date": "2026-06-17",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "2e92d4e7ed31",
+      "date": "2026-06-20",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "f9e4fa0e7e79",
+      "date": "2026-06-22",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "702c233a5485",
+      "date": "2026-06-22",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "1284d54d24b3",
+      "date": "2026-06-24",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "11b23771a17d",
+      "date": "2026-06-29",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "9b513d02961f",
+      "date": "2026-06-29",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "369e647b6c0c",
+      "date": "2026-06-30",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "d0f5532afded",
+      "date": "2026-06-30",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "c930698a5eb6",
+      "date": "2026-07-01",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "954e4adbd839",
+      "date": "2026-07-01",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "ca1a3a9f64e7",
+      "date": "2026-07-01",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "f74de7410eba",
+      "date": "2026-07-01",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "49329af28ef6",
+      "date": "2026-07-04",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "5180d3dda80b",
+      "date": "2026-07-06",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "b805b2d7e837",
+      "date": "2026-07-08",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "d8bb11d72a48",
+      "date": "2026-07-13",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "5c31a0d78d23",
+      "date": "2026-07-13",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "5521a4cedc14",
+      "date": "2026-07-14",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "87493e71ec01",
+      "date": "2026-07-15",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "94591314d29a",
+      "date": "2026-07-15",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "4709da9aa023",
+      "date": "2026-07-15",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "9fa6dd0853ff",
+      "date": "2026-07-18",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "94094a84a319",
+      "date": "2026-07-20",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "43bf53dafdc8",
+      "date": "2026-07-20",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "35b4e59ebab3",
+      "date": "2026-07-22",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "619060b1540b",
+      "date": "2026-07-27",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "a632a9f74117",
+      "date": "2026-07-27",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "a65676566894",
+      "date": "2026-07-28",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "b9a50b3276cd",
+      "date": "2026-07-28",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "8508eb9d0a36",
+      "date": "2026-07-29",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "9f4202128e15",
+      "date": "2026-07-29",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "fdfc5156f382",
+      "date": "2026-08-01",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "5cd9b19100ee",
+      "date": "2026-08-03",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "1d67102b1fc6",
+      "date": "2026-08-03",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "0ff1960b27f6",
+      "date": "2026-08-05",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "342379ed6952",
+      "date": "2026-08-05",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "66a9cc066036",
+      "date": "2026-08-05",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "80f71a77daf7",
+      "date": "2026-08-10",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "0ee6b07ba016",
+      "date": "2026-08-10",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "facb8158ef3b",
+      "date": "2026-08-11",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "56d6acc41abd",
+      "date": "2026-08-12",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "b52ba003dfb7",
+      "date": "2026-08-12",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "49d1d3341774",
+      "date": "2026-08-12",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "e51c180ec8a0",
+      "date": "2026-08-15",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "0a4b2fc6d175",
+      "date": "2026-08-17",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "25d16cea0b4f",
+      "date": "2026-08-17",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "e93797188464",
+      "date": "2026-08-19",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "37e117ed707d",
+      "date": "2026-08-24",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "adcf52e76362",
+      "date": "2026-08-24",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "72fa3eb692ff",
+      "date": "2026-08-25",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "ebbd449da91a",
+      "date": "2026-08-25",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "6974a7d057b5",
+      "date": "2026-08-26",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "5ed5b977434a",
+      "date": "2026-08-26",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "dbce1010a61c",
+      "date": "2026-08-29",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "8120efa7bb0a",
+      "date": "2026-08-31",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "6b075708cc8a",
+      "date": "2026-08-31",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "ef414ba42a13",
+      "date": "2026-09-02",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "ec97dfdd1a5d",
+      "date": "2026-09-02",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "1057e3bd40e3",
+      "date": "2026-09-02",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "e8c9642c30b2",
+      "date": "2026-09-07",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "01f3fd17a248",
+      "date": "2026-09-07",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "40ead0555662",
+      "date": "2026-09-08",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "7fcc26464066",
+      "date": "2026-09-09",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "4232168a2547",
+      "date": "2026-09-09",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "84bbb4840aeb",
+      "date": "2026-09-09",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "00c5e5068b5c",
+      "date": "2026-09-12",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "72fd40bacf11",
+      "date": "2026-09-14",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "ed5895c208cf",
+      "date": "2026-09-14",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "83f1fe3f0083",
+      "date": "2026-09-16",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "c2dc78bbf305",
+      "date": "2026-09-21",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "80960ad68d69",
+      "date": "2026-09-21",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "cfdcad3622d9",
+      "date": "2026-09-22",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "b4cee380d9bb",
+      "date": "2026-09-22",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "341183fe1d82",
+      "date": "2026-09-23",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "7d280a8adfc4",
+      "date": "2026-09-23",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "76e6e7ed577c",
+      "date": "2026-09-26",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "d18f47e165b8",
+      "date": "2026-09-28",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "d2429412d863",
+      "date": "2026-09-30",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr Pondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky) Středa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "7e92ae546eb9",
+      "date": "2026-10-05",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "ee3f9d55a0d0",
+      "date": "2026-10-05",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "3995d85b020f",
+      "date": "2026-10-06",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "a27d6c6f759c",
+      "date": "2026-10-07",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "6cb491590e51",
+      "date": "2026-10-07",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "60a2a163620c",
+      "date": "2026-10-07",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "deedfbb26926",
+      "date": "2026-10-07",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "8387fb862c91",
+      "date": "2026-10-07",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "d9d7320e68e5",
+      "date": "2026-10-10",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "defc43766ed2",
+      "date": "2026-10-12",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "6d927c1179a3",
+      "date": "2026-10-12",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "37dbd6cf988e",
+      "date": "2026-10-14",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "802e0f38b6f8",
+      "date": "2026-10-19",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "15526556d8ae",
+      "date": "2026-10-19",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "9b9ce214ae0b",
+      "date": "2026-10-20",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "d0121f365865",
+      "date": "2026-10-20",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "022d6e7dcbc7",
+      "date": "2026-10-21",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "BIO odpad interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "4a55fe2abca5",
+      "date": "2026-10-21",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "775ea1251ec3",
+      "date": "2026-10-24",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "4b5908cd1aa7",
+      "date": "2026-10-26",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "c75c7044ece2",
+      "date": "2026-10-26",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "4b372b6473d0",
+      "date": "2026-11-02",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "fd8ea436906e",
+      "date": "2026-11-02",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "ff1c3e0c506f",
+      "date": "2026-11-03",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "29fc1d334253",
+      "date": "2026-11-04",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "Svoz bioodpadu interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "e1d28b02ca2a",
+      "date": "2026-11-04",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "4c3dd170e207",
+      "date": "2026-11-04",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "33cd1c33d63b",
+      "date": "2026-11-04",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "3a361a9f601e",
+      "date": "2026-11-04",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "16ad94c90d68",
+      "date": "2026-11-07",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "0ce63db991c8",
+      "date": "2026-11-09",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "29e0193f502c",
+      "date": "2026-11-09",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "8a840aed8d52",
+      "date": "2026-11-11",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "4cd4db05242b",
+      "date": "2026-11-16",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "68dcca92580c",
+      "date": "2026-11-16",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "e3bd95d3a9bd",
+      "date": "2026-11-17",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "db701e7a07d8",
+      "date": "2026-11-17",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "fb40b6a8c110",
+      "date": "2026-11-18",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "b4f325d6380b",
+      "date": "2026-11-21",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "c649020d4cef",
+      "date": "2026-11-23",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "9a77196a8e35",
+      "date": "2026-11-23",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "098b97faeba4",
+      "date": "2026-11-25",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "799b27e5ba8a",
+      "date": "2026-11-30",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "ed67779694b2",
+      "date": "2026-11-30",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "66a9904b3580",
+      "date": "2026-12-01",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "0c438e6ebfd7",
+      "date": "2026-12-02",
+      "wasteTypeId": "10",
+      "wasteTypeName": "Svoz bioodpadu interval 14 dnů",
+      "shortName": "Bioodpad (14 dní)",
+      "description": "Svoz bioodpadu interval 14 dnů",
+      "note": "Svoz bioodpadu interval 14 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#ff0000",
+      "isCollection": true
+    },
+    {
+      "id": "0203012f4949",
+      "date": "2026-12-02",
+      "wasteTypeId": "11",
+      "wasteTypeName": "Svoz bioodpadu interval 28 dnů",
+      "shortName": "Bioodpad (28 dní)",
+      "description": "Svoz bioodpadu interval 28 dnů",
+      "note": "BIO odpad interval 28 dnů platí od 1. 1. do 31. 3. a od 1. 11. do 31. 12. i pro červenou známku, která od 1. 4. do 31. 10. přechází na 14 denní interval svozu",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#37b44a",
+      "isCollection": true
+    },
+    {
+      "id": "3472aeed64bd",
+      "date": "2026-12-02",
+      "wasteTypeId": "2",
+      "wasteTypeName": "Pytlový sběr plastů",
+      "shortName": "Plasty (pytlový sběr)",
+      "description": "pytlový sběr plastů se provádí vždy první středu v měsíci",
+      "note": "Pytlový sběr plastů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ffff00",
+      "isCollection": true
+    },
+    {
+      "id": "79f1abf7f959",
+      "date": "2026-12-02",
+      "wasteTypeId": "3",
+      "wasteTypeName": "Sběr potravinářských olejů",
+      "shortName": "Potravinářské oleje",
+      "description": "Potravinářské oleje je možno v uzavřené nádobě postavit k pytlovému sběru odpadů",
+      "note": "třídění potravinářských olejů snižuje zanášení odpadních rozvodů bytových domů",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#ed008c",
+      "isCollection": true
+    },
+    {
+      "id": "93d8796027ff",
+      "date": "2026-12-02",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "c2d392681e3d",
+      "date": "2026-12-05",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "93740c9002ae",
+      "date": "2026-12-07",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "28e971473819",
+      "date": "2026-12-07",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "80c3193d8f38",
+      "date": "2026-12-09",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "b6ba3fee0bc4",
+      "date": "2026-12-14",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "fe60bf5fce90",
+      "date": "2026-12-14",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "edd3d63be379",
+      "date": "2026-12-15",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "9a7e4999737c",
+      "date": "2026-12-15",
+      "wasteTypeId": "12",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "shortName": "Komunální odpad (28 dní)",
+      "description": "Svoz směsného komunálního odpadu - 28 denní interval svozu SKO",
+      "note": "svoz SKO interval 28 dnů",
+      "places": [
+        "Loštice",
+        "Žádlovice a Vlčice"
+      ],
+      "color": "#fdc68c",
+      "isCollection": true
+    },
+    {
+      "id": "b466e661d72d",
+      "date": "2026-12-16",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "64179c8591d1",
+      "date": "2026-12-19",
+      "wasteTypeId": "6",
+      "wasteTypeName": "Provozní doba sběrného dvora víkend",
+      "shortName": "Sběrný dvůr (Víkend)",
+      "description": "Sobota od 08:00 do 12:00 hod.",
+      "note": "otevřeno sobota od 8:00 do 12:00 hod.",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#555555",
+      "isCollection": false
+    },
+    {
+      "id": "2cb55eb9cb94",
+      "date": "2026-12-21",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "1bb1ae5de40f",
+      "date": "2026-12-21",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "c5afa215fbea",
+      "date": "2026-12-23",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "90261b15fdfc",
+      "date": "2026-12-28",
+      "wasteTypeId": "13",
+      "wasteTypeName": "Gastro odpad",
+      "shortName": "Gastro odpad",
+      "description": "Gastro odpad - nádoby jsou umístěny uprostřed sídlišť vždy po třech 3 ks na Sídlišti na Sokolské ulici",
+      "note": "Gastro nádoby mohou využívat všichni obyvatelé města Loštice",
+      "places": [
+        "Sídliště",
+        "ulice Sokolská"
+      ],
+      "color": "#7c4900",
+      "isCollection": true
+    },
+    {
+      "id": "2a1489f07217",
+      "date": "2026-12-28",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    },
+    {
+      "id": "61c99e6516c9",
+      "date": "2026-12-29",
+      "wasteTypeId": "7",
+      "wasteTypeName": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "shortName": "Komunální odpad (14 dní)",
+      "description": "Svoz směsného komunálního odpadu - 14 denní interval svozu SKO",
+      "note": "14 denní svoz směsný komunální odpad",
+      "places": [
+        "Loštice"
+      ],
+      "color": "#00aeef",
+      "isCollection": true
+    },
+    {
+      "id": "2410fd5b73cf",
+      "date": "2026-12-30",
+      "wasteTypeId": "4",
+      "wasteTypeName": "Provozní doba sběrného dvora",
+      "shortName": "Sběrný dvůr (Po, St)",
+      "description": "Pondělí od 10:00 do 12:00 a od 13:00 do 17:00 hod.\nStředa od 13:00 hod. do 17:00 hod.",
+      "note": "Sběrný dvůr\nPondělí 10.00 - 12.00 13.00 - 17.00 (mimo státní svátky)\nStředa zavřeno 13.00 - 17.00 (mimo státní svátky)",
+      "places": [
+        "ulice Moravičanská"
+      ],
+      "color": "#333333",
+      "isCollection": false
+    }
+  ]
+}

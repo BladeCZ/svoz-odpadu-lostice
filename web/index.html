@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Svoz odpadu Loštice – Kalendář a Android aplikace</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0284c7" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="container header-inner">
+      <div>
+        <h1>🗑️ Svoz odpadu Loštice</h1>
+        <p class="subtitle">Kalendář komunálních služeb, filtrování a upozornění pro Android</p>
+      </div>
+      <div class="header-actions">
+        <button id="toggleFilterBtn" class="btn btn-secondary">⚙️ Filtr</button>
+        <a href="data/calendar.ics" download class="btn btn-outline">📅 Stáhnout .ICS</a>
+        <a id="apkDownloadBtn" href="https://github.com/BladeCZ/svoz-odpadu-lostice/releases/download/apk-latest/SvozOdpaduLostice.apk" class="btn btn-primary">📱 Stáhnout Android APK</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Rozbalovací panel Filtr (podle webu MÚ Loštice) -->
+    <section id="filterPanel" class="filter-panel hidden">
+      <div class="filter-grid">
+        <div class="form-group">
+          <label for="wasteSelect">Typ události (komodita):</label>
+          <select id="wasteSelect">
+            <option value="0">Všechny typy událostí</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="placeSelect">Místo / Lokalita:</label>
+          <select id="placeSelect">
+            <option value="">Všechna místa (celé město)</option>
+          </select>
+        </div>
+      </div>
+      <div class="filter-options">
+        <label class="checkbox-label">
+          <input type="checkbox" id="hideYardCheck" checked />
+          <span>Skrýt provozní dobu sběrného dvora (zobrazit jen svozy odpadu)</span>
+        </label>
+        <button id="resetFilterBtn" class="btn btn-link">Zrušit filtr</button>
+      </div>
+    </section>
+
+    <!-- Rychlé chipy pro filtrování -->
+    <div id="quickChips" class="chips-row"></div>
+
+    <!-- Karta Nejbližší svoz -->
+    <section id="nextCollectionBox" class="next-card"></section>
+
+    <!-- Přepínač pohledu -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="upcoming">📋 Budoucí svozy</button>
+      <button class="tab-btn" data-tab="calendar">🗓️ Měsíční kalendář</button>
+    </div>
+
+    <!-- Sekce 1: Budoucí svozy -->
+    <section id="tab-upcoming" class="tab-content active">
+      <div id="upcomingList" class="events-list"></div>
+    </section>
+
+    <!-- Sekce 2: Měsíční kalendář -->
+    <section id="tab-calendar" class="tab-content">
+      <div class="calendar-card">
+        <div class="cal-nav">
+          <button id="prevMonthBtn" class="btn btn-secondary">◀ Předchozí</button>
+          <h2 id="calMonthTitle">Listopad 2026</h2>
+          <button id="nextMonthBtn" class="btn btn-secondary">Další ▶</button>
+        </div>
+        <div class="cal-weekdays">
+          <div>Po</div><div>Út</div><div>St</div><div>Čt</div><div>Pá</div><div>So</div><div>Ne</div>
+        </div>
+        <div id="calGrid" class="cal-grid"></div>
+      </div>
+      <div id="selectedDayBox" class="selected-day-box"></div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>Zdroj dat: <a href="https://www.mu-lostice.cz/obcan/komunalni-sluzby/" target="_blank" rel="noopener">Město Loštice – Komunální služby</a> • Automaticky aktualizováno přes GitHub Actions</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
